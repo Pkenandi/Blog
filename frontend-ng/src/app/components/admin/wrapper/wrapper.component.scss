@@ -1,0 +1,27 @@
+mat-sidenav-container{
+  height: 550px;
+
+  mat-sidenav{
+    overflow: hidden;
+
+    mat-nav-list{
+      overflow-x: hidden;
+      .chevron-button{
+        transition: 300ms ease-in-out;
+        transform: rotate(0deg);
+        right: 0;
+        float: right;
+        position: absolute;
+      }
+
+      .chevron-button.rotated {
+        transform: rotate(180deg);
+      }
+
+      .sidenav-button{
+
+      }
+    }
+  }
+}
+

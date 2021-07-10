@@ -1,0 +1,58 @@
+<mat-sidenav-container autosize>
+
+  <mat-sidenav #sidenav mode="side" opened="true">
+    <mat-nav-list>
+
+      <mat-list-item>
+        <mat-icon mat-list-icon class="chevron-button sidenav-button"
+                  (click)="isExpended = !isExpended" [ngClass]="{'rotated': isExpended}">
+          chevron_right</mat-icon>
+      </mat-list-item>
+
+      <mat-list-item [routerLink]="'/admin/dashboard'" (click)="setTitle('Overview')">
+        <mat-icon mat-list-icon class="">dashboard</mat-icon>
+        <span *ngIf="isExpended">Overview</span>
+      </mat-list-item>
+
+      <mat-list-item [routerLink]="'/admin/add-realisation'" (click)="setTitle('Réalisations')">
+        <mat-icon mat-list-icon class="">work</mat-icon>
+        <span *ngIf="isExpended">Réalisations</span>
+      </mat-list-item>
+
+      <mat-list-item [routerLink]="'/admin/add-education'" (click)="setTitle('Educations')">
+        <mat-icon mat-list-icon class="">school</mat-icon>
+        <span *ngIf="isExpended">Educations</span>
+      </mat-list-item>
+
+      <mat-list-item [routerLink]="'/admin/add-curriculum'" (click)="setTitle('Curriculum')">
+        <mat-icon mat-list-icon class="">note</mat-icon>
+        <span *ngIf="isExpended">Curriculum vitea</span>
+      </mat-list-item>
+
+      <mat-list-item [routerLink]="'/admin/add-skills'" (click)="setTitle('Skills')">
+        <mat-icon mat-list-icon class="">trending_up</mat-icon>
+        <span *ngIf="isExpended">Skills</span>
+      </mat-list-item>
+
+      <mat-list-item [routerLink]="'/admin/add-profile'" (click)="setTitle('Profil professionel')">
+        <mat-icon mat-list-icon class="">perm_identity</mat-icon>
+        <span *ngIf="isExpended">Profil professionel</span>
+      </mat-list-item>
+
+      <mat-list-item [routerLink]="'/admin/add-interest'" (click)="setTitle('Centre interet')">
+        <mat-icon mat-list-icon class="">favorite</mat-icon>
+        <span *ngIf="isExpended">Centre d'interets </span>
+      </mat-list-item>
+
+      <mat-list-item [routerLink]="'/admin/logout'" (click)="setTitle('Logout')">
+        <mat-icon mat-list-icon class="">logout</mat-icon>
+        <span *ngIf="isExpended">Logout </span>
+      </mat-list-item>
+
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <div>
+    <router-outlet></router-outlet>
+  </div>
+</mat-sidenav-container>

@@ -1,0 +1,12 @@
+.navbar{
+  height: 100px;
+}
+
+.img img{
+  height: 90px;
+  width: 140px;
+}
+
+button{
+  margin-right: 5px;
+}
