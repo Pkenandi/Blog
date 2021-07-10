@@ -1,7 +1,7 @@
-package com.magesty.backend.models.dto;
+package com.magesty.backend.models.plainDto;
 
 import com.magesty.backend.models.Experience;
-import com.magesty.backend.models.plainDto.PlainAdminDto;
+import com.magesty.backend.models.dto.ExperienceDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,17 +13,15 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class ExperienceDto {
+public class PlainExperienceDto {
     private UUID id;
     private String realisedAt;
     private LocalDate start;
     private LocalDate expected_end;
     private String description;
 
-    private PlainAdminDto adminDto;
-
-    public static ExperienceDto from(Experience experience){
-        ExperienceDto experienceDto = new ExperienceDto();
+    public static PlainExperienceDto from(Experience experience){
+        PlainExperienceDto experienceDto = new PlainExperienceDto();
 
         if(Objects.isNull(experience)){
             return null;
@@ -33,7 +31,6 @@ public class ExperienceDto {
             experienceDto.setRealisedAt(experience.getRealisedAt());
             experienceDto.setStart(experience.getStart());
             experienceDto.setExpected_end(experience.getExpected_end());
-            experienceDto.setAdminDto(PlainAdminDto.from(experience.getAdmin()));
 
             return experienceDto;
         }

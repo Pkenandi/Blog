@@ -1,8 +1,7 @@
-package com.magesty.backend.models.dto;
+package com.magesty.backend.models.plainDto;
 
-import com.magesty.backend.models.Admin;
 import com.magesty.backend.models.Competence;
-import com.magesty.backend.models.plainDto.PlainAdminDto;
+import com.magesty.backend.models.dto.CompetenceDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,16 +12,14 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class CompetenceDto {
+public class PlainCompetenceDto {
     private UUID id;
     private String name;
     private Integer numberOfYear;
     private String description;
 
-    private PlainAdminDto adminDto;
-
-    public static CompetenceDto from(Competence competence){
-        CompetenceDto competenceDto = new CompetenceDto();
+    public static PlainCompetenceDto from(Competence competence){
+        PlainCompetenceDto competenceDto = new PlainCompetenceDto();
 
         if(Objects.isNull(competence)){
             return null;
@@ -31,8 +28,6 @@ public class CompetenceDto {
             competenceDto.setName(competence.getName());
             competenceDto.setDescription(competence.getDescription());
             competenceDto.setNumberOfYear(competence.getNumberOfYear());
-
-            competenceDto.setAdminDto(PlainAdminDto.from(competence.getAdmin()));
 
             return competenceDto;
         }

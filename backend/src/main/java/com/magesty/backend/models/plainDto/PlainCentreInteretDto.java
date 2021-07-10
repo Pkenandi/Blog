@@ -1,7 +1,8 @@
-package com.magesty.backend.models.dto;
+package com.magesty.backend.models.plainDto;
 
 import com.magesty.backend.models.CentreInteret;
-import com.magesty.backend.models.plainDto.PlainAdminDto;
+import com.magesty.backend.models.dto.AdminDto;
+import com.magesty.backend.models.dto.CentreInteretDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,14 +13,13 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class CentreInteretDto {
+public class PlainCentreInteretDto {
     private UUID id;
     private String name;
     private String description;
-    private PlainAdminDto adminDto;
 
-    public static CentreInteretDto from(CentreInteret centreInteret){
-        CentreInteretDto centreInteretDto = new CentreInteretDto();
+    public static PlainCentreInteretDto from(CentreInteret centreInteret){
+        PlainCentreInteretDto centreInteretDto = new PlainCentreInteretDto();
 
         if(Objects.isNull(centreInteret)){
             return null;
@@ -27,7 +27,6 @@ public class CentreInteretDto {
             centreInteretDto.setId(centreInteret.getId());
             centreInteretDto.setName(centreInteret.getName());
             centreInteretDto.setDescription(centreInteret.getDescription());
-            centreInteretDto.setAdminDto(PlainAdminDto.from(centreInteret.getAdmin()));
 
             return centreInteretDto;
         }

@@ -1,7 +1,8 @@
-package com.magesty.backend.models.dto;
+package com.magesty.backend.models.plainDto;
 
 import com.magesty.backend.models.Education;
-import com.magesty.backend.models.plainDto.PlainAdminDto;
+import com.magesty.backend.models.dto.AdminDto;
+import com.magesty.backend.models.dto.EducationDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,7 +14,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class EducationDto {
+public class PlainEducationDto {
     private UUID id;
     private String etablissement;
     private String degree;
@@ -22,10 +23,8 @@ public class EducationDto {
     private LocalDate expected_end;
     private boolean current;
 
-    private PlainAdminDto adminDto;
-
-    public static EducationDto from(Education education){
-        EducationDto educationDto = new EducationDto();
+    public static PlainEducationDto from(Education education){
+        PlainEducationDto educationDto = new PlainEducationDto();
 
         if(Objects.isNull(education)){
             return null;
@@ -37,8 +36,6 @@ public class EducationDto {
             educationDto.setCurrent(education.isCurrent());
             educationDto.setStart(education.getStart());
             educationDto.setExpected_end(education.getExpected_end());
-
-            educationDto.setAdminDto(PlainAdminDto.from(education.getAdmin()));
 
             return educationDto;
         }

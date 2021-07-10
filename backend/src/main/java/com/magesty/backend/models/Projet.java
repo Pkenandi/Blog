@@ -3,6 +3,8 @@ package com.magesty.backend.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.magesty.backend.models.dto.AdminDto;
 import com.magesty.backend.models.dto.ProjetDto;
+import com.magesty.backend.models.plainDto.PlainAdminDto;
+import com.magesty.backend.models.plainDto.PlainProjetDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -49,7 +51,6 @@ public class Projet implements Serializable {
             projet.setCurrent(projetDto.isCurrent());
             projet.setStart(projetDto.getStart());
             projet.setEnd(projetDto.getEnd());
-            projet.setAdmin(Admin.from(projetDto.getAdminDto()));
 
             return projet;
         }

@@ -1,7 +1,7 @@
-package com.magesty.backend.models.dto;
+package com.magesty.backend.models.plainDto;
 
 import com.magesty.backend.models.SocialMedia;
-import com.magesty.backend.models.plainDto.PlainAdminDto;
+import com.magesty.backend.models.dto.SocialMediaDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,12 +12,12 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class SocialMediaDto {
+public class PlainSocialMediaDto {
     private UUID id;
     private String socialUrl;
 
-    public static SocialMediaDto from(SocialMedia socialMedia){
-        SocialMediaDto socialMediaDto = new SocialMediaDto();
+    public static PlainSocialMediaDto from(SocialMedia socialMedia){
+        PlainSocialMediaDto socialMediaDto = new PlainSocialMediaDto();
 
         if(Objects.isNull(socialMedia)){
             return null;

@@ -3,6 +3,8 @@ package com.magesty.backend.models.dto;
 import com.magesty.backend.models.Admin;
 import com.magesty.backend.models.Adresse;
 import com.magesty.backend.models.SocialMedia;
+import com.magesty.backend.models.plainDto.PlainAdminDto;
+import com.magesty.backend.models.plainDto.PlainSocialMediaDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -23,15 +26,15 @@ public class AdresseDto {
     private String phone;
     private String email;
 
-    private AdminDto adminDto;
-    private List<SocialMediaDto> socialMediaDtoList = new ArrayList<>();
+    private PlainAdminDto plainAdminDto;
+    private List<PlainSocialMediaDto> plainSocialMediaDtos = new ArrayList<>();
 
-    public static AdresseDto from(Adresse adresse){
+    public static AdresseDto from(Adresse adresse) {
         AdresseDto adresseDto = new AdresseDto();
 
-        if(Objects.isNull(adresse)){
+        if (Objects.isNull(adresse)) {
             return null;
-        }else{
+        } else {
             adresseDto.setId(adresse.getId());
             adresseDto.setEmail(adresse.getEmail());
             adresseDto.setPhone(adresse.getPhone());
@@ -39,7 +42,13 @@ public class AdresseDto {
             adresseDto.setAvenue(adresse.getAvenue());
             adresseDto.setVille(adresse.getVille());
 
-            adresseDto.setAdminDto(AdminDto.from(adresse.getAdmin()));
+            adresseDto.setPlainAdminDto(PlainAdminDto.from(adresse.getAdmin()));
+
+            adresseDto.setPlainSocialMediaDtos(
+                    adresse.getSocialMediaList()
+                            .stream()
+                            .map(PlainSocialMediaDto::from)
+                            .collect(Collectors.toList()));
 
             return adresseDto;
         }

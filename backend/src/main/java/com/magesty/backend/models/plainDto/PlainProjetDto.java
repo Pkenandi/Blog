@@ -1,7 +1,7 @@
-package com.magesty.backend.models.dto;
+package com.magesty.backend.models.plainDto;
 
 import com.magesty.backend.models.Projet;
-import com.magesty.backend.models.plainDto.PlainAdminDto;
+import com.magesty.backend.models.dto.ProjetDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,7 +13,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class ProjetDto {
+public class PlainProjetDto {
     private UUID id;
     private String projetName;
     private LocalDate start;
@@ -23,10 +23,8 @@ public class ProjetDto {
     private String description;
     private boolean current;
 
-    private PlainAdminDto adminDto;
-
-    public static ProjetDto from(Projet projet){
-        ProjetDto projetDto = new ProjetDto();
+    public static PlainProjetDto from(Projet projet){
+        PlainProjetDto projetDto = new PlainProjetDto();
 
         if(Objects.isNull(projet)){
             return null;
@@ -39,7 +37,6 @@ public class ProjetDto {
             projetDto.setCurrent(projet.isCurrent());
             projetDto.setStart(projet.getStart());
             projetDto.setEnd(projet.getEnd());
-            projetDto.setAdminDto(PlainAdminDto.from(projet.getAdmin()));
 
             return projetDto;
         }

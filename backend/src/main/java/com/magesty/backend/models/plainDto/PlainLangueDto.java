@@ -1,7 +1,7 @@
-package com.magesty.backend.models.dto;
+package com.magesty.backend.models.plainDto;
 
 import com.magesty.backend.models.Langue;
-import com.magesty.backend.models.plainDto.PlainAdminDto;
+import com.magesty.backend.models.dto.LangueDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,14 +12,13 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class LangueDto {
+public class PlainLangueDto {
     private UUID id;
     private String name;
     private String level;
-    private PlainAdminDto adminDto;
 
-    public static LangueDto from(Langue langue){
-        LangueDto langueDto = new LangueDto();
+    public static PlainLangueDto from(Langue langue){
+        PlainLangueDto langueDto = new PlainLangueDto();
 
         if(Objects.isNull(langue)){
             return null;
@@ -27,7 +26,6 @@ public class LangueDto {
             langueDto.setId(langue.getId());
             langueDto.setName(langue.getName());
             langueDto.setLevel(langue.getLevel());
-            langueDto.setAdminDto(PlainAdminDto.from(langue.getAdmin()));
 
             return langueDto;
         }
