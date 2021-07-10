@@ -44,8 +44,6 @@ public class Experience implements Serializable {
             experience.setStart(experienceDto.getStart());
             experience.setExpected_end(experienceDto.getExpected_end());
 
-            experience.setAdmin(Admin.from(experienceDto.getAdminDto()));
-
             return experience;
         }
     }

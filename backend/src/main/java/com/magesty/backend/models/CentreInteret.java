@@ -37,7 +37,6 @@ public class CentreInteret implements Serializable {
             centreInteret.setId(centreInteretDto.getId());
             centreInteret.setDescription(centreInteretDto.getDescription());
             centreInteret.setName(centreInteretDto.getName());
-            centreInteret.setAdmin(Admin.from(centreInteretDto.getAdminDto()));
 
             return centreInteret;
         }

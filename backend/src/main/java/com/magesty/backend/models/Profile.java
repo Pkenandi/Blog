@@ -34,7 +34,6 @@ public class Profile implements Serializable {
         }else{
             profile.setId(profileDto.getId());
             profile.setContent(profileDto.getContent());
-            profile.setAdmin(Admin.from(profileDto.getAdminDto()));
 
             return profile;
         }

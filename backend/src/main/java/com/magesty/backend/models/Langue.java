@@ -38,7 +38,6 @@ public class Langue implements Serializable {
             langue.setId(langueDto.getId());
             langue.setName(langueDto.getName());
             langue.setLevel(langueDto.getLevel());
-            langue.setAdmin(Admin.from(langueDto.getAdminDto()));
 
             return langue;
         }

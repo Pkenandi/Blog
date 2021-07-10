@@ -48,8 +48,6 @@ public class Education implements Serializable {
             education.setStart(educationDto.getStart());
             education.setExpected_end(educationDto.getExpected_end());
 
-            education.setAdmin(Admin.from(educationDto.getAdminDto()));
-
             return education;
         }
     }

@@ -40,8 +40,6 @@ public class Competence implements Serializable {
             competence.setDescription(competenceDto.getDescription());
             competence.setNumberOfYear(competenceDto.getNumberOfYear());
 
-            competence.setAdmin(Admin.from(competenceDto.getAdminDto()));
-
             return competence;
         }
     }

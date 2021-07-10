@@ -51,8 +51,6 @@ public class Adresse implements Serializable {
             adresse.setPays(adresseDto.getAvenue());
             adresse.setVille(adresseDto.getVille());
 
-            adresse.setAdmin(Admin.from(adresseDto.getAdminDto()));
-
             return adresse;
         }
     }
