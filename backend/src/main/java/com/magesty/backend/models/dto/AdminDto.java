@@ -69,11 +69,6 @@ public class AdminDto {
                     .map(PlainProjetDto::from)
                     .collect(Collectors.toList()));
 
-            adminDto.setPlainSocialMediaDtoList(admin.getSocialMediaList()
-                    .stream()
-                    .map(PlainSocialMediaDto::from)
-                    .collect(Collectors.toList()));
-
             adminDto.setPlainLangueDtoList(admin.getLangueList()
                     .stream()
                     .map(PlainLangueDto::from)

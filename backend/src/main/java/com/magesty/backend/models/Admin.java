@@ -66,10 +66,6 @@ public class Admin implements Serializable {
     @JoinColumn(name = "admin_Id")
     private List<Education> educationList = new ArrayList<>();
 
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    @OneToMany( cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-    @JoinColumn(name = "admin_Id")
-    private List<SocialMedia> socialMediaList = new ArrayList<>();
 
     // Methods
     public static Admin from(AdminDto adminDto){
@@ -87,9 +83,6 @@ public class Admin implements Serializable {
         }
     }
 
-    public void addSocialMedia(SocialMedia socialMedia){
-        this.socialMediaList.add(socialMedia);
-    }
     public void addEducation(Education education){
         this.educationList.add(education);
     }

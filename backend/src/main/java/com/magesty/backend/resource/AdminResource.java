@@ -1,13 +1,15 @@
 package com.magesty.backend.resource;
 
 import com.magesty.backend.models.Admin;
+import com.magesty.backend.models.dto.AdminDto;
 import com.magesty.backend.models.dto.LoginDto;
 import com.magesty.backend.service.AdminService;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.UUID;
 
 @AllArgsConstructor
 @RestController
@@ -15,13 +17,31 @@ import org.springframework.web.bind.annotation.RestController;
 public class AdminResource {
     private final AdminService adminService;
 
+                // Login and Register
     @PostMapping("admin/register")
-    public Admin register(@RequestBody final Admin administrator) throws Exception {
-        return this.adminService.register(administrator);
+    public ResponseEntity<AdminDto> register(@RequestBody final AdminDto administrator) throws Exception {
+        try{
+            return new ResponseEntity<>(this.adminService.register(administrator), HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
     }
 
     @PostMapping("admin/login")
-    public Admin login(@RequestBody final LoginDto loginDto) throws Exception {
-        return this.adminService.login(loginDto);
+    public ResponseEntity<AdminDto> login(@RequestBody final LoginDto loginDto) {
+        try{
+            return new ResponseEntity<>(this.adminService.login(loginDto), HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
     }
+
+                // Operations
+
+    @GetMapping("admin/{id}")
+    public ResponseEntity<AdminDto> getOne(@PathVariable final Long id){
+        return new ResponseEntity<>(this.adminService.getOne(id), HttpStatus.OK);
+    }
+
+
 }

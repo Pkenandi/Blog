@@ -55,4 +55,8 @@ public class Adresse implements Serializable {
         }
     }
 
+    public void addSocialMedia(SocialMedia socialMedia){
+        this.socialMediaList.add(socialMedia);
+    }
+
 }
