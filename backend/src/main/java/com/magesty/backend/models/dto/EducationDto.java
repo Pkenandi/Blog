@@ -14,7 +14,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @Data
 public class EducationDto {
-    private UUID id;
+    private Long id;
     private String etablissement;
     private String degree;
     private String average;

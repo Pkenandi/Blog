@@ -8,13 +8,12 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.util.Objects;
-import java.util.UUID;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 public class ProjetDto {
-    private UUID id;
+    private Long id;
     private String projetName;
     private LocalDate start;
     private LocalDate end;

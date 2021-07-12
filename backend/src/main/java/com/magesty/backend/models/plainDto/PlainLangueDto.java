@@ -13,7 +13,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @Data
 public class PlainLangueDto {
-    private UUID id;
+    private Long id;
     private String name;
     private String level;
 

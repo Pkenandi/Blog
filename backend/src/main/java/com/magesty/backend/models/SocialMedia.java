@@ -5,10 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 import java.util.UUID;
@@ -19,9 +16,8 @@ import java.util.UUID;
 @Data
 public class SocialMedia implements Serializable {
     @Id
-    @Column(updatable = false, unique = true, nullable = false)
-    @GeneratedValue
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String socialUrl;
 
     public static SocialMedia from(SocialMediaDto socialMediaDto){

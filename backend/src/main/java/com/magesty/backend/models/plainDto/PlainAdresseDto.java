@@ -13,7 +13,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @Data
 public class PlainAdresseDto {
-    private UUID id;
+    private Long id;
     private String avenue;
     private String pays;
     private String ville;
@@ -26,7 +26,7 @@ public class PlainAdresseDto {
         if(Objects.isNull(adresse)){
             return null;
         }else{
-            adresseDto.setId(adresse.getId());
+            adresseDto.setId(adresse.get_id());
             adresseDto.setEmail(adresse.getEmail());
             adresseDto.setPhone(adresse.getPhone());
             adresseDto.setPays(adresse.getPays());

@@ -14,7 +14,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @Data
 public class PlainProfileDto {
-    private UUID id;
+    private Long id;
     private String content;
 
     public static PlainProfileDto from(Profile profile){

@@ -7,13 +7,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Objects;
-import java.util.UUID;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 public class CentreInteretDto {
-    private UUID id;
+    private Long id;
     private String name;
     private String description;
     private PlainAdminDto adminDto;
@@ -24,7 +23,7 @@ public class CentreInteretDto {
         if(Objects.isNull(centreInteret)){
             return null;
         }else{
-            centreInteretDto.setId(centreInteret.getId());
+            centreInteretDto.setId(centreInteret.get_id());
             centreInteretDto.setName(centreInteret.getName());
             centreInteretDto.setDescription(centreInteret.getDescription());
             centreInteretDto.setAdminDto(PlainAdminDto.from(centreInteret.getAdmin()));

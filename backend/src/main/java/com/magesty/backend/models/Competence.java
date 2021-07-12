@@ -17,16 +17,15 @@ import java.util.UUID;
 @Entity
 public class Competence implements Serializable {
     @Id
-    @Column(updatable = false, unique = true, nullable = false)
-    @GeneratedValue
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String name;
     private Integer numberOfYear;
     private String description;
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn( name = "comp_Id")
+    @JoinColumn( name = "compId")
     private Admin admin;
 
     public static Competence from(CompetenceDto competenceDto){

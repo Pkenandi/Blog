@@ -12,13 +12,12 @@ import java.util.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "admin")
+@Entity
 @Data
 public class Admin implements Serializable {
     @Id
-    @Column(updatable = false, unique = true, nullable = false)
-    @GeneratedValue
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long _id;
     @Column(nullable = false, unique = true, updatable = false)
     private String username;
     @Column(nullable = false, updatable = false, unique = true)
@@ -28,42 +27,42 @@ public class Admin implements Serializable {
     /* Relationships */
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @OneToOne( cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn( name = "profile_Id")
+    @JoinColumn( name = "profileId")
     private Profile profile;
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @OneToMany( cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-    @JoinColumn(name = "admin_Id")
+    @JoinColumn(name = "adminId")
     private List<Adresse> adresseList = new ArrayList<>();
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @OneToMany( cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-    @JoinColumn(name = "admin_Id")
+    @JoinColumn(name = "adminId")
     private List<Competence> competenceList = new ArrayList<>();
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @OneToMany( cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-    @JoinColumn(name = "admin_Id")
+    @JoinColumn(name = "adminId")
     private List<Projet> projetList = new ArrayList<>();
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @OneToMany( cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-    @JoinColumn(name = "admin_Id")
+    @JoinColumn(name = "adminId")
     private List<Langue> langueList = new ArrayList<>();
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @OneToMany( cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-    @JoinColumn(name = "admin_Id")
+    @JoinColumn(name = "adminId")
     private List<Experience> experienceList = new ArrayList<>();
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @OneToMany( cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-    @JoinColumn(name = "admin_Id")
+    @JoinColumn(name = "adminId")
     private List<CentreInteret> centreInteretList = new ArrayList<>();
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @OneToMany( cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-    @JoinColumn(name = "admin_Id")
+    @JoinColumn(name = "adminId")
     private List<Education> educationList = new ArrayList<>();
 
 
@@ -74,7 +73,7 @@ public class Admin implements Serializable {
         if(Objects.isNull(adminDto)){
             return null;
         }else{
-            admin.setId(adminDto.getId());
+            admin.set_id(adminDto.getId());
             admin.setEmail(adminDto.getEmail());
             admin.setUsername(adminDto.getUsername());
             admin.setPassword(adminDto.getPassword());

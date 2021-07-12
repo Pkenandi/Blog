@@ -14,7 +14,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @Data
 public class PlainProjetDto {
-    private UUID id;
+    private Long id;
     private String projetName;
     private LocalDate start;
     private LocalDate end;

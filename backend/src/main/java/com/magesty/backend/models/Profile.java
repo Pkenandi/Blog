@@ -1,6 +1,5 @@
 package com.magesty.backend.models;
 
-import com.magesty.backend.models.dto.AdminDto;
 import com.magesty.backend.models.dto.ProfileDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,7 +8,6 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
-import java.util.UUID;
 
 @Entity
 @AllArgsConstructor
@@ -17,13 +15,12 @@ import java.util.UUID;
 @Data
 public class Profile implements Serializable {
     @Id
-    @Column(updatable = false, unique = true, nullable = false)
-    @GeneratedValue
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String content;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "admin_Id")
+    @JoinColumn(name = "adminId")
     private Admin admin;
 
     public static Profile from(ProfileDto profileDto){

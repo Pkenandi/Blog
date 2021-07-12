@@ -1,6 +1,5 @@
 package com.magesty.backend.models.dto;
 
-import com.magesty.backend.models.Admin;
 import com.magesty.backend.models.Competence;
 import com.magesty.backend.models.plainDto.PlainAdminDto;
 import lombok.AllArgsConstructor;
@@ -8,13 +7,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Objects;
-import java.util.UUID;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 public class CompetenceDto {
-    private UUID id;
+    private Long id;
     private String name;
     private Integer numberOfYear;
     private String description;

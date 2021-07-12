@@ -16,12 +16,11 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Entity( name = "experience")
+@Entity
 public class Experience implements Serializable {
     @Id
-    @Column(updatable = false, unique = true, nullable = false)
-    @GeneratedValue
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String realisedAt;
     private LocalDate start;
     private LocalDate expected_end;
@@ -29,7 +28,7 @@ public class Experience implements Serializable {
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn( name = "exp_Id")
+    @JoinColumn( name = "expId")
     private Admin admin;
 
     public static Experience from(ExperienceDto experienceDto){

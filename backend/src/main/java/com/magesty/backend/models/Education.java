@@ -16,12 +16,11 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Entity( name = "education")
+@Entity
 public class Education implements Serializable {
     @Id
-    @Column(updatable = false, unique = true, nullable = false)
-    @GeneratedValue
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String etablissement;
     private String degree;
     private String average;
@@ -31,7 +30,7 @@ public class Education implements Serializable {
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn( name = "edu_Id")
+    @JoinColumn( name = "eduId")
     private Admin admin;
 
     public static Education from(EducationDto educationDto){

@@ -38,10 +38,6 @@ public class AdminResource {
 
                 // Operations
 
-    @GetMapping("admin/{id}")
-    public ResponseEntity<AdminDto> getOne(@PathVariable final Long id){
-        return new ResponseEntity<>(this.adminService.getOne(id), HttpStatus.OK);
-    }
 
 
 }

@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 @Data
 public class AdminDto {
-    private UUID id;
+    private Long id;
     private String username;
     private String email;
     private String password;
@@ -37,7 +37,7 @@ public class AdminDto {
         if(Objects.isNull(admin)){
             return null;
         }else{
-            adminDto.setId(admin.getId());
+            adminDto.setId(admin.get_id());
             adminDto.setEmail(admin.getEmail());
             adminDto.setPassword(admin.getPassword());
             adminDto.setUsername(admin.getUsername());

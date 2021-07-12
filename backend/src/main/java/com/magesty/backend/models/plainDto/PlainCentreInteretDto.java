@@ -14,7 +14,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @Data
 public class PlainCentreInteretDto {
-    private UUID id;
+    private Long id;
     private String name;
     private String description;
 
@@ -24,7 +24,7 @@ public class PlainCentreInteretDto {
         if(Objects.isNull(centreInteret)){
             return null;
         }else{
-            centreInteretDto.setId(centreInteret.getId());
+            centreInteretDto.setId(centreInteret.get_id());
             centreInteretDto.setName(centreInteret.getName());
             centreInteretDto.setDescription(centreInteret.getDescription());
 

@@ -12,7 +12,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @Data
 public class PlainAdminDto {
-    private UUID id;
+    private Long id;
     private String username;
     private String email;
     private String password;
@@ -23,7 +23,7 @@ public class PlainAdminDto {
         if(Objects.isNull(admin)){
             return null;
         }else{
-            adminDto.setId(admin.getId());
+            adminDto.setId(admin.get_id());
             adminDto.setEmail(admin.getEmail());
             adminDto.setPassword(admin.getPassword());
             adminDto.setUsername(admin.getUsername());

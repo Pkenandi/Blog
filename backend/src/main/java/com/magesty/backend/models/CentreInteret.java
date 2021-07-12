@@ -17,15 +17,14 @@ import java.util.UUID;
 @Entity
 public class CentreInteret implements Serializable {
     @Id
-    @Column(updatable = false, unique = true, nullable = false)
-    @GeneratedValue
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long _id;
     private String name;
     private String description;
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn( name = "interest_Id")
+    @JoinColumn( name = "interestId")
     private Admin admin;
 
     public static CentreInteret from(CentreInteretDto centreInteretDto){
@@ -34,7 +33,7 @@ public class CentreInteret implements Serializable {
         if(Objects.isNull(centreInteretDto)){
             return null;
         }else{
-            centreInteret.setId(centreInteretDto.getId());
+            centreInteret.set_id(centreInteretDto.getId());
             centreInteret.setDescription(centreInteretDto.getDescription());
             centreInteret.setName(centreInteretDto.getName());
 

@@ -19,9 +19,8 @@ import java.util.UUID;
 @Entity
 public class Adresse implements Serializable {
     @Id
-    @Column(updatable = false, unique = true, nullable = false)
-    @GeneratedValue
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long _id;
     private String avenue;
     private String pays;
     private String ville;
@@ -30,12 +29,12 @@ public class Adresse implements Serializable {
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn( name = "adresse_Id")
+    @JoinColumn( name = "adresseId")
     private Admin admin;
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @OneToMany( cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-    @JoinColumn(name = "adresse_Id")
+    @JoinColumn(name = "adresseId")
     private List<SocialMedia> socialMediaList = new ArrayList<>();
 
     public static Adresse from(AdresseDto adresseDto){
@@ -44,7 +43,7 @@ public class Adresse implements Serializable {
         if(Objects.isNull(adresseDto)){
             return null;
         }else{
-            adresse.setId(adresseDto.getId());
+            adresse.set_id(adresseDto.getId());
             adresse.setAvenue(adresseDto.getAvenue());
             adresse.setEmail(adresseDto.getEmail());
             adresse.setPhone(adresseDto.getPhone());

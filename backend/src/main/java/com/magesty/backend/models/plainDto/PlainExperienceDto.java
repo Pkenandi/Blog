@@ -14,7 +14,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @Data
 public class PlainExperienceDto {
-    private UUID id;
+    private Long id;
     private String realisedAt;
     private LocalDate start;
     private LocalDate expected_end;

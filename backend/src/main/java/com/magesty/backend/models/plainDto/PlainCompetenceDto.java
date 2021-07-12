@@ -13,7 +13,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @Data
 public class PlainCompetenceDto {
-    private UUID id;
+    private Long id;
     private String name;
     private Integer numberOfYear;
     private String description;

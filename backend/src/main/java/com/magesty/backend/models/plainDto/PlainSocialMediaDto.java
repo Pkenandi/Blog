@@ -13,7 +13,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @Data
 public class PlainSocialMediaDto {
-    private UUID id;
+    private Long id;
     private String socialUrl;
 
     public static PlainSocialMediaDto from(SocialMedia socialMedia){

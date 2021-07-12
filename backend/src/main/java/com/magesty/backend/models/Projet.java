@@ -18,12 +18,11 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Entity( name = "projet")
+@Entity
 public class Projet implements Serializable {
     @Id
-    @Column(updatable = false, unique = true, nullable = false)
-    @GeneratedValue
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String projetName;
     private LocalDate start;
     private LocalDate end;
@@ -34,7 +33,7 @@ public class Projet implements Serializable {
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn( name = "project_Id")
+    @JoinColumn( name = "projectId")
     private Admin admin;
 
     public static Projet from(ProjetDto projetDto){

@@ -7,13 +7,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Objects;
-import java.util.UUID;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 public class ProfileDto {
-    private UUID id;
+    private Long id;
     private String content;
     private PlainAdminDto adminDto;
 
