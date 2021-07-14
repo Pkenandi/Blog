@@ -1,15 +1,14 @@
 package com.magesty.backend.models.dto;
 
 import com.magesty.backend.models.Admin;
-import com.magesty.backend.models.plainDto.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 @AllArgsConstructor
@@ -21,65 +20,71 @@ public class AdminDto {
     private String email;
     private String password;
 
-    private PlainProfileDto plainProfileDto;
-    private List<PlainEducationDto> plainEducationDtoList = new ArrayList<>();
-    private List<PlainAdresseDto> plainAdresseDtoList = new ArrayList<>();
-    private List<PlainCompetenceDto> plainCompetenceDtoList = new ArrayList<>();
-    private List<PlainCentreInteretDto> plainCentreInteretDtoList = new ArrayList<>();
-    private List<PlainProjetDto> plainProjetDtoList = new ArrayList<>();
-    private List<PlainSocialMediaDto> plainSocialMediaDtoList = new ArrayList<>();
-    private List<PlainLangueDto> plainLangueDtoList = new ArrayList<>();
-    private List<PlainExperienceDto> plainExperienceDtoList = new ArrayList<>();
+    private List<EducationDto> educationDtoList = new ArrayList<>();
+    private List<AdresseDto> adresseDtoList = new ArrayList<>();
+    private List<CompetenceDto> competenceDtoList = new ArrayList<>();
+    private List<CentreInteretDto> centreInteretDtoList = new ArrayList<>();
+    private List<ProjetDto> projetDtoList = new ArrayList<>();
+    private List<LangueDto> langueDtoList = new ArrayList<>();
+    private List<ExperienceDto> experienceDtoList = new ArrayList<>();
+    private List<SocialMediaDto> socialMediaDtoList = new ArrayList<>();
+    private ProfileDto profileDto;
 
-    public static AdminDto from(Admin admin){
+    public static AdminDto from(Admin admin) {
         AdminDto adminDto = new AdminDto();
 
-        if(Objects.isNull(admin)){
-            return null;
-        }else{
-            adminDto.setId(admin.get_id());
+        if (admin != null) {
+
+            adminDto.setId(admin.getId());
             adminDto.setEmail(admin.getEmail());
             adminDto.setPassword(admin.getPassword());
             adminDto.setUsername(admin.getUsername());
 
-            adminDto.setPlainProfileDto(PlainProfileDto.from(admin.getProfile()));
+            adminDto.setProfileDto(ProfileDto.from(admin.getProfile()));
 
-            adminDto.setPlainEducationDtoList(admin.getEducationList()
+            adminDto.setEducationDtoList(admin.getEducationList()
                     .stream()
-                    .map(PlainEducationDto::from)
+                    .map(EducationDto::from)
                     .collect(Collectors.toList()));
 
-            adminDto.setPlainAdresseDtoList(admin.getAdresseList()
+            adminDto.setAdresseDtoList(admin.getAdresseList()
                     .stream()
-                    .map(PlainAdresseDto::from)
+                    .map(AdresseDto::from)
                     .collect(Collectors.toList()));
 
-            adminDto.setPlainCompetenceDtoList(admin.getCompetenceList()
+            adminDto.setCompetenceDtoList(admin.getCompetenceList()
                     .stream()
-                    .map(PlainCompetenceDto::from)
+                    .map(CompetenceDto::from)
                     .collect(Collectors.toList()));
 
-            adminDto.setPlainCentreInteretDtoList(admin.getCentreInteretList()
+            adminDto.setCentreInteretDtoList(admin.getCentreInteretList()
                     .stream()
-                    .map(PlainCentreInteretDto::from)
+                    .map(CentreInteretDto::from)
                     .collect(Collectors.toList()));
 
-            adminDto.setPlainProjetDtoList(admin.getProjetList()
+            adminDto.setProjetDtoList(admin.getProjetList()
                     .stream()
-                    .map(PlainProjetDto::from)
+                    .map(ProjetDto::from)
                     .collect(Collectors.toList()));
 
-            adminDto.setPlainLangueDtoList(admin.getLangueList()
+            adminDto.setLangueDtoList(admin.getLangueList()
                     .stream()
-                    .map(PlainLangueDto::from)
+                    .map(LangueDto::from)
                     .collect(Collectors.toList()));
 
-            adminDto.setPlainExperienceDtoList(admin.getExperienceList()
+            adminDto.setExperienceDtoList(admin.getExperienceList()
                     .stream()
-                    .map(PlainExperienceDto::from)
+                    .map(ExperienceDto::from)
+                    .collect(Collectors.toList()));
+
+            adminDto.setSocialMediaDtoList(admin.getSocialMediaList()
+                    .stream()
+                    .map(SocialMediaDto::from)
                     .collect(Collectors.toList()));
 
             return adminDto;
+        } else {
+            return null;
         }
     }
 }

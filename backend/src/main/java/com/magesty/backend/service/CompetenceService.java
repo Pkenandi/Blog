@@ -6,6 +6,7 @@ import com.magesty.backend.repository.CompetenceRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -14,6 +15,7 @@ import static java.util.Objects.requireNonNull;
 
 @AllArgsConstructor
 @Service
+@Transactional
 public class CompetenceService {
     private final CompetenceRepository competenceRepository;
 
@@ -28,9 +30,9 @@ public class CompetenceService {
                 .collect(Collectors.toList());
     }
 
-    public CompetenceDto getOne(final Long id){
-        return CompetenceDto.from(this.competenceRepository.findById(id).orElseThrow(
-                () -> new RuntimeException(" Not found ")
+    public CompetenceDto getOne(final Long id) throws Exception {
+        return CompetenceDto.from(this.competenceRepository.findById(id)
+                .orElseThrow(() -> new Exception("Competence Not found ")
         ));
     }
 }

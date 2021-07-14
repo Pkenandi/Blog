@@ -3,6 +3,7 @@ package com.magesty.backend.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.magesty.backend.models.dto.AdminDto;
 import com.magesty.backend.models.dto.LangueDto;
+import com.magesty.backend.models.plainDto.PlainAdminDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,7 +11,6 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
-import java.util.UUID;
 
 @AllArgsConstructor
 @NoArgsConstructor

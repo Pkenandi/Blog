@@ -6,6 +6,7 @@ import com.magesty.backend.repository.LangueRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -14,6 +15,7 @@ import static java.util.Objects.requireNonNull;
 
 @AllArgsConstructor
 @Service
+@Transactional
 public class LangueService {
     private final LangueRepository langueRepository;
 
@@ -27,8 +29,8 @@ public class LangueService {
                 .collect(Collectors.toList());
     }
 
-    public LangueDto getOne(final Long id) {
+    public LangueDto getOne(Long id) throws Exception {
         return LangueDto.from(this.langueRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException(" Not found ")));
+                .orElseThrow(() -> new Exception("Langue Not found ")));
     }
 }

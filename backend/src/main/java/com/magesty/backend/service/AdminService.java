@@ -30,7 +30,7 @@ public class AdminService {
     private final ProfileService profileService;
     private final SocialMediaService socialMediaService;
 
-                // Login and Register
+    // Login and Register
     public AdminDto register(AdminDto administrator) throws Exception {
         if(isNull(administrator)){
             throw new Exception(" Null Object");
@@ -54,134 +54,152 @@ public class AdminService {
         }
     }
 
+    public AdminDto findByUsername(final String username) throws Exception {
+        Admin admin = this.adminRepository.findByUsername(username);
+        if(Objects.nonNull(admin)){
+            return AdminDto.from(admin);
+        }else{
+            throw new Exception("Null Admin");
+        }
+    }
+
                     // Operations
-    public AdminDto addAdresse(String username, Long adrId){
-        Admin admin = this.adminRepository.findByUsername(username);
-        AdresseDto adressedto = this.adresseService.getOne(adrId);
+    public AdminDto addAdresse(String username, Long adrId) throws Exception {
+        Admin admin = Admin.from(this.findByUsername(username));
+        Adresse adresse = Adresse.from(this.adresseService.getOne(adrId));
 
-        if(isNull(admin) && isNull(adressedto)){
-            throw new RuntimeException("Null PointerException");
-        }else {
-            admin.addAdresse(Adresse
-                    .from(adressedto));
-            adressedto.setPlainAdminDto(PlainAdminDto
-                    .from(admin));
+        if(nonNull(admin) && nonNull(adresse)){
+            admin.addAdresse(adresse);
+            adresse.setAdmin(admin);
+            this.adminRepository.save(admin);
 
             return from(admin);
+        } else{
+            throw new Exception(" Adresse is Null ");
+        }
+
+
+
+    }
+
+    public AdminDto addEducation(String username, Long eduId) throws Exception {
+        Admin admin = Admin.from(this.findByUsername(username));
+        Education education = Education.from(this.educationService.getOne(eduId));
+
+        if(nonNull(admin) && nonNull(education)){
+            admin.addEducation(education);
+            education.setAdmin(admin);
+            this.adminRepository.save(admin);
+
+            return from(admin);
+        }else {
+            throw new Exception(" Education is Null ");
         }
     }
 
-    public AdminDto addEducation(String username, Long eduId){
-        Admin admin = this.adminRepository.findByUsername(username);
-        EducationDto educationDto = this.educationService.getOne(eduId);
+    public AdminDto addCentreInteret(String username, Long id) throws Exception {
+        Admin admin = Admin.from(this.findByUsername(username));
+        CentreInteret centreInteret = CentreInteret.from(this.centreInteretService.getOne(id));
 
-        if(isNull(admin) && isNull(educationDto)){
-            throw new RuntimeException("Null Point Exception");
-        }else {
-            admin.addEducation(Education.from(educationDto));
-            educationDto.setAdminDto(PlainAdminDto.from(admin));
+        if(nonNull(admin) && nonNull(centreInteret)){
+            admin.addCentreInteret(centreInteret);
+            centreInteret.setAdmin(admin);
+            this.adminRepository.save(admin);
 
             return from(admin);
+        }else {
+            throw new Exception(" Centre d'interet is Null ");
         }
     }
 
-    public AdminDto addCentreInteret(String username, Long id){
-        Admin admin = this.adminRepository.findByUsername(username);
-        CentreInteretDto centreInteretDto = this.centreInteretService.getOne(id);
+    public AdminDto addCompetence(String username, Long compId) throws Exception {
+        Admin admin = Admin.from(this.findByUsername(username));
+        Competence competence = Competence.from(this.competenceService.getOne(compId));
 
-        if(isNull(admin) && isNull(centreInteretDto)){
-            throw new RuntimeException("Null Point Exception");
-        }else {
-            admin.addCentreInteret(CentreInteret.from(centreInteretDto));
-            centreInteretDto.setAdminDto(PlainAdminDto.from(admin));
+        if(nonNull(admin) && nonNull(competence)){
+            admin.addCompetence(competence);
+            competence.setAdmin(admin);
+            this.adminRepository.save(admin);
 
             return from(admin);
+        }else {
+            throw new Exception(" Competence is Null ");
         }
     }
 
-    public AdminDto addCompetence(String username, Long compId){
-        Admin admin = this.adminRepository.findByUsername(username);
-        CompetenceDto competenceDto = this.competenceService.getOne(compId);
+    public AdminDto addExperience(String username, Long id) throws Exception {
+        Admin admin = Admin.from(this.findByUsername(username));
+        Experience experience = Experience.from(this.experienceService.getOne(id));
 
-        if(isNull(admin) && isNull(competenceDto)){
-            throw new RuntimeException("Null Point Exception");
-        }else {
-            admin.addCompetence(Competence.from(competenceDto));
-            competenceDto.setAdminDto(PlainAdminDto.from(admin));
+        if(nonNull(admin) && nonNull(experience)){
+            admin.addExperience(experience);
+            experience.setAdmin(admin);
+            this.adminRepository.save(admin);
 
             return from(admin);
+        }else {
+            throw new Exception(" Experience is Null ");
         }
     }
 
-    public AdminDto addExperience(String username, Long id){
-        Admin admin = this.adminRepository.findByUsername(username);
-        ExperienceDto experienceDto = this.experienceService.getOne(id);
+    public AdminDto addLangue(String username, Long id) throws Exception {
+        Admin admin = Admin.from(this.findByUsername(username));
+        Langue langue = Langue.from(this.langueService.getOne(id));
 
-        if(isNull(admin) && isNull(experienceDto)){
-            throw new RuntimeException("Null Point Exception");
-        }else {
-            admin.addExperience(Experience.from(experienceDto));
-            experienceDto.setAdminDto(PlainAdminDto.from(admin));
+        if(nonNull(admin) && nonNull(langue)){
+            admin.addLangue(langue);
+            langue.setAdmin(admin);
+            this.adminRepository.save(admin);
 
             return from(admin);
+        }else {
+            throw new Exception(" Langue is Null ");
         }
     }
 
-    public AdminDto addLangue(String username, Long id){
-        Admin admin = this.adminRepository.findByUsername(username);
-        LangueDto langueDto = this.langueService.getOne(id);
+    public AdminDto addProfile(String username, Long id) throws Exception {
+        Admin admin = Admin.from(this.findByUsername(username));
+        Profile profile = Profile.from(this.profileService.getOne(id));
 
-        if(isNull(admin) && isNull(langueDto)){
-            throw new RuntimeException("Null Point Exception");
-        }else {
-            admin.addLangue(Langue.from(langueDto));
-            langueDto.setAdminDto(PlainAdminDto.from(admin));
+        if(nonNull(admin) && nonNull(profile)){
+            admin.setProfile(profile);
+            profile.setAdmin(admin);
+            this.adminRepository.save(admin);
 
             return from(admin);
+        }else {
+            throw new Exception(" Profile is Null ");
         }
     }
 
-    public AdminDto addProfile(String username, Long id){
-        Admin admin = this.adminRepository.findByUsername(username);
-        ProfileDto profileDto = this.profileService.getOne(id);
+    public AdminDto addProjet(String username, Long id) throws Exception {
+        Admin admin = Admin.from(this.findByUsername(username));
+        Projet projet = Projet.from(this.projetService.getOne(id));
 
-        if(isNull(admin) && isNull(profileDto)){
-            throw new RuntimeException("Null Point Exception");
-        }else {
-            admin.setProfile(Profile.from(profileDto));
-            profileDto.setAdminDto(PlainAdminDto.from(admin));
+        if(nonNull(admin) && nonNull(projet)){
+            admin.addProjet(projet);
+            projet.setAdmin(admin);
+            this.adminRepository.save(admin);
 
             return from(admin);
+        }else {
+            throw new Exception(" Projet is Null ");
         }
     }
 
-    public AdminDto addProjet(String username, Long id){
-        Admin admin = this.adminRepository.findByUsername(username);
-        ProjetDto projetDto = this.projetService.getOne(id);
+    public AdminDto addMedia(String username, Long id) throws Exception {
+        Admin admin = Admin.from(this.findByUsername(username));
+        SocialMedia socialMedia = SocialMedia.from(this.socialMediaService.getOne(id));
 
-        if(isNull(admin) && isNull(projetDto)){
-            throw new RuntimeException("Null Point Exception");
-        }else {
-            admin.addProjet(Projet.from(projetDto));
-            projetDto.setAdminDto(PlainAdminDto.from(admin));
+        if(nonNull(admin) && nonNull(socialMedia)){
+            admin.addMedia(socialMedia);
+            socialMedia.setAdmin(admin);
+            this.adminRepository.save(admin);
 
             return from(admin);
+        }else{
+            throw new Exception(" Media not found");
         }
     }
-
-//    public AdminDto addSocialMedia(Long adrId, Long mediaId){
-//        AdresseDto adresseDto = this.adresseService.getOne(adrId);
-//        SocialMediaDto socialMediaDto = this.socialMediaService.getOne(mediaId);
-//
-//        if(isNull(adresseDto) && isNull(socialMediaDto)){
-//            throw new RuntimeException("Null Point Exception");
-//        }else {
-//
-//            adresseDto.setPlainSocialMediaDtos(PlainSocialMediaDto.from());
-//            socialMediaDto
-//
-//            return from(admin);
-//        }
-//    }
 
 }

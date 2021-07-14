@@ -22,7 +22,7 @@ public class ProjetDto {
     private String description;
     private boolean current;
 
-    private PlainAdminDto adminDto;
+    private PlainAdminDto plainAdminDto;
 
     public static ProjetDto from(Projet projet){
         ProjetDto projetDto = new ProjetDto();
@@ -38,7 +38,7 @@ public class ProjetDto {
             projetDto.setCurrent(projet.isCurrent());
             projetDto.setStart(projet.getStart());
             projetDto.setEnd(projet.getEnd());
-            projetDto.setAdminDto(PlainAdminDto.from(projet.getAdmin()));
+            projetDto.setPlainAdminDto(PlainAdminDto.from(projet.getAdmin()));
 
             return projetDto;
         }

@@ -6,6 +6,7 @@ import com.magesty.backend.repository.ProjetRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -14,6 +15,7 @@ import static java.util.Objects.requireNonNull;
 
 @AllArgsConstructor
 @Service
+@Transactional
 public class ProjetService {
     private final ProjetRepository projetRepository;
 
@@ -26,8 +28,8 @@ public class ProjetService {
                 .map(ProjetDto::from).collect(Collectors.toList());
     }
 
-    public ProjetDto getOne(final Long id){
+    public ProjetDto getOne(final Long id) throws Exception {
         return ProjetDto.from(this.projetRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException(" Not found")));
+                .orElseThrow(() -> new Exception("Projet Not found")));
     }
 }

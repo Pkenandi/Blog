@@ -6,6 +6,7 @@ import com.magesty.backend.repository.EducationRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -14,26 +15,23 @@ import static java.util.Objects.requireNonNull;
 
 @AllArgsConstructor
 @Service
+@Transactional
 public class EducationService {
     private final EducationRepository educationRepository;
 
-    public EducationDto addEducation(EducationDto educationDto){
-        if(isNull(educationDto)){
-            return null;
-        }else{
-            return EducationDto.from(this.educationRepository.save(requireNonNull(Education.from(educationDto))));
-        }
+    public EducationDto addEducation(EducationDto educationDto) {
+        return EducationDto.from(this.educationRepository.save(requireNonNull(Education.from(educationDto))));
     }
 
-    public List<EducationDto> getAll(){
+    public List<EducationDto> getAll() {
         return this.educationRepository.findAll()
                 .stream()
                 .map(EducationDto::from)
                 .collect(Collectors.toList());
     }
 
-    public EducationDto getOne(Long id){
+    public EducationDto getOne(Long id) throws Exception {
         return EducationDto.from(this.educationRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException(" Not found ")));
+                .orElseThrow(() -> new Exception(" Education Not found ")));
     }
 }

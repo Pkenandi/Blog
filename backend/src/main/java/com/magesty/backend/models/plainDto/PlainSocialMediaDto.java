@@ -14,6 +14,7 @@ import java.util.UUID;
 @Data
 public class PlainSocialMediaDto {
     private Long id;
+    private String mediaName;
     private String socialUrl;
 
     public static PlainSocialMediaDto from(SocialMedia socialMedia){
@@ -23,6 +24,7 @@ public class PlainSocialMediaDto {
             return null;
         }else{
             socialMediaDto.setId(socialMedia.getId());
+            socialMediaDto.setMediaName(socialMedia.getMediaName());
             socialMediaDto.setSocialUrl(socialMedia.getSocialUrl());
 
             return socialMediaDto;

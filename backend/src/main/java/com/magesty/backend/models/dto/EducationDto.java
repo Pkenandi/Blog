@@ -22,7 +22,7 @@ public class EducationDto {
     private LocalDate expected_end;
     private boolean current;
 
-    private PlainAdminDto adminDto;
+    private PlainAdminDto plainAdminDto;
 
     public static EducationDto from(Education education){
         EducationDto educationDto = new EducationDto();
@@ -38,7 +38,7 @@ public class EducationDto {
             educationDto.setStart(education.getStart());
             educationDto.setExpected_end(education.getExpected_end());
 
-            educationDto.setAdminDto(PlainAdminDto.from(education.getAdmin()));
+            educationDto.setPlainAdminDto(PlainAdminDto.from(education.getAdmin()));
 
             return educationDto;
         }

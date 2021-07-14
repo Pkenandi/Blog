@@ -19,7 +19,7 @@ public class ExperienceDto {
     private LocalDate expected_end;
     private String description;
 
-    private PlainAdminDto adminDto;
+    private PlainAdminDto plainAdminDto;
 
     public static ExperienceDto from(Experience experience){
         ExperienceDto experienceDto = new ExperienceDto();
@@ -32,7 +32,7 @@ public class ExperienceDto {
             experienceDto.setRealisedAt(experience.getRealisedAt());
             experienceDto.setStart(experience.getStart());
             experienceDto.setExpected_end(experience.getExpected_end());
-            experienceDto.setAdminDto(PlainAdminDto.from(experience.getAdmin()));
+            experienceDto.setPlainAdminDto(PlainAdminDto.from(experience.getAdmin()));
 
             return experienceDto;
         }

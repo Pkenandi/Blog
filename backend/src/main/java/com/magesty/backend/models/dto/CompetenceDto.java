@@ -17,22 +17,22 @@ public class CompetenceDto {
     private Integer numberOfYear;
     private String description;
 
-    private PlainAdminDto adminDto;
+    private PlainAdminDto plainAdminDto;
 
     public static CompetenceDto from(Competence competence){
         CompetenceDto competenceDto = new CompetenceDto();
 
-        if(Objects.isNull(competence)){
-            return null;
-        }else{
+        if(competence != null){
             competenceDto.setId(competence.getId());
             competenceDto.setName(competence.getName());
             competenceDto.setDescription(competence.getDescription());
             competenceDto.setNumberOfYear(competence.getNumberOfYear());
 
-            competenceDto.setAdminDto(PlainAdminDto.from(competence.getAdmin()));
+            competenceDto.setPlainAdminDto(PlainAdminDto.from(competence.getAdmin()));
 
             return competenceDto;
+        }else{
+           return null;
         }
     }
 }

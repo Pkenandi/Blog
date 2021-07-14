@@ -14,7 +14,7 @@ import java.util.Objects;
 public class ProfileDto {
     private Long id;
     private String content;
-    private PlainAdminDto adminDto;
+    private PlainAdminDto plainAdminDto;
 
     public static ProfileDto from(Profile profile){
         ProfileDto profileDto = new ProfileDto();
@@ -24,7 +24,7 @@ public class ProfileDto {
         }else{
             profileDto.setId(profile.getId());
             profileDto.setContent(profile.getContent());
-            profileDto.setAdminDto(PlainAdminDto.from(profile.getAdmin()));
+            profileDto.setPlainAdminDto(PlainAdminDto.from(profile.getAdmin()));
 
             return profileDto;
         }

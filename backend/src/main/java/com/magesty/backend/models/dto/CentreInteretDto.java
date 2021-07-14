@@ -20,15 +20,15 @@ public class CentreInteretDto {
     public static CentreInteretDto from(CentreInteret centreInteret){
         CentreInteretDto centreInteretDto = new CentreInteretDto();
 
-        if(Objects.isNull(centreInteret)){
-            return null;
-        }else{
+        if(centreInteret != null){
             centreInteretDto.setId(centreInteret.get_id());
             centreInteretDto.setName(centreInteret.getName());
             centreInteretDto.setDescription(centreInteret.getDescription());
             centreInteretDto.setAdminDto(PlainAdminDto.from(centreInteret.getAdmin()));
 
             return centreInteretDto;
+        }else{
+            return null;
         }
     }
 }

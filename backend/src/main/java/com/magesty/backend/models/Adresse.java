@@ -29,13 +29,8 @@ public class Adresse implements Serializable {
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn( name = "adresseId")
-    private Admin admin;
-
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    @OneToMany( cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     @JoinColumn(name = "adresseId")
-    private List<SocialMedia> socialMediaList = new ArrayList<>();
+    private Admin admin;
 
     public static Adresse from(AdresseDto adresseDto){
         Adresse adresse = new Adresse();
@@ -47,15 +42,12 @@ public class Adresse implements Serializable {
             adresse.setAvenue(adresseDto.getAvenue());
             adresse.setEmail(adresseDto.getEmail());
             adresse.setPhone(adresseDto.getPhone());
-            adresse.setPays(adresseDto.getAvenue());
+            adresse.setPays(adresseDto.getPays());
             adresse.setVille(adresseDto.getVille());
 
             return adresse;
         }
     }
 
-    public void addSocialMedia(SocialMedia socialMedia){
-        this.socialMediaList.add(socialMedia);
-    }
 
 }

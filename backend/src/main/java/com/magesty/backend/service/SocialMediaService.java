@@ -6,6 +6,7 @@ import com.magesty.backend.repository.SocialMediaRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -14,6 +15,7 @@ import static java.util.Objects.requireNonNull;
 
 @AllArgsConstructor
 @Service
+@Transactional
 public class SocialMediaService {
     private final SocialMediaRepository socialMediaRepository;
 
@@ -28,8 +30,9 @@ public class SocialMediaService {
                 .collect(Collectors.toList());
     }
 
-    public SocialMediaDto getOne(final Long id){
+    public SocialMediaDto getOne(final Long id) throws Exception {
         return SocialMediaDto.from(this.socialMediaRepository.findById(id)
-        .orElseThrow(() -> new RuntimeException(" Not found")));
+        .orElseThrow(() -> new Exception("Media Not found")));
     }
+
 }

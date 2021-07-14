@@ -6,7 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Objects;
-import java.util.UUID;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -23,7 +22,7 @@ public class PlainAdminDto {
         if(Objects.isNull(admin)){
             return null;
         }else{
-            adminDto.setId(admin.get_id());
+            adminDto.setId(admin.getId());
             adminDto.setEmail(admin.getEmail());
             adminDto.setPassword(admin.getPassword());
             adminDto.setUsername(admin.getUsername());

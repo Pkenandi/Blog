@@ -21,15 +21,15 @@ public class LangueDto {
     public static LangueDto from(Langue langue){
         LangueDto langueDto = new LangueDto();
 
-        if(Objects.isNull(langue)){
-            return null;
-        }else{
+        if(langue != null){
             langueDto.setId(langue.getId());
             langueDto.setName(langue.getName());
             langueDto.setLevel(langue.getLevel());
             langueDto.setAdminDto(PlainAdminDto.from(langue.getAdmin()));
 
             return langueDto;
+        }else{
+            return null;
         }
     }
 }
