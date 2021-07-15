@@ -16,8 +16,8 @@ import static javax.persistence.CascadeType.*;
 import static javax.persistence.FetchType.*;
 import static javax.persistence.GenerationType.*;
 
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Data
 public class Admin implements Serializable {
@@ -29,6 +29,8 @@ public class Admin implements Serializable {
     @Column(nullable = false, updatable = false, unique = true)
     private String email;
     private String password;
+    @ManyToMany(fetch = EAGER)
+    private Collection<Role> roles = new ArrayList<>();
 
     /* Relationships */
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
@@ -76,7 +78,6 @@ public class Admin implements Serializable {
     @JoinColumn(name = "admin_Id")
     private List<SocialMedia> socialMediaList = new ArrayList<>();
 
-
     // Methods
     public static Admin from(AdminDto adminDto) {
         Admin admin = new Admin();
@@ -89,6 +90,7 @@ public class Admin implements Serializable {
             admin.setUsername(adminDto.getUsername());
             admin.setPassword(adminDto.getPassword());
             admin.setProfile(Profile.from(adminDto.getProfileDto()));
+            admin.setRoles(adminDto.getRoles());
             admin.setAdresseList(adminDto.getAdresseDtoList().stream().map(Adresse::from).collect(Collectors.toList()));
             admin.setCentreInteretList(adminDto.getCentreInteretDtoList().stream().map(CentreInteret::from).collect(Collectors.toList()));
             admin.setCompetenceList(adminDto.getCompetenceDtoList().stream().map(Competence::from).collect(Collectors.toList()));
@@ -100,6 +102,10 @@ public class Admin implements Serializable {
 
             return admin;
         }
+    }
+
+    public void addRole(Role role){
+        this.roles.add(role);
     }
 
     public void addEducation(Education education) {

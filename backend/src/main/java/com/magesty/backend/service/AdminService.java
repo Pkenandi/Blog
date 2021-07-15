@@ -5,10 +5,23 @@ import com.magesty.backend.models.dto.*;
 import com.magesty.backend.models.plainDto.PlainAdminDto;
 import com.magesty.backend.models.plainDto.PlainSocialMediaDto;
 import com.magesty.backend.repository.AdminRepository;
+import com.magesty.backend.repository.RoleRepository;
 import lombok.AllArgsConstructor;
+import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Objects;
 
 import static com.magesty.backend.models.dto.AdminDto.*;
@@ -17,8 +30,11 @@ import static java.util.Objects.*;
 @AllArgsConstructor
 @Service
 @Transactional
-public class AdminService {
+@Slf4j
+public class AdminService implements UserDetailsService {
     private final AdminRepository adminRepository;
+    private final RoleRepository roleRepository;
+    private final PasswordEncoder passwordEncoder;
 
     private final AdresseService adresseService;
     private final EducationService educationService;
@@ -31,12 +47,23 @@ public class AdminService {
     private final SocialMediaService socialMediaService;
 
     // Login and Register
-    public AdminDto register(AdminDto administrator) throws Exception {
-        if(isNull(administrator)){
-            throw new Exception(" Null Object");
-        }else{
-            return from(this.adminRepository.save(requireNonNull(Admin.from(administrator))));
-        }
+    @SneakyThrows
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        AdminDto adminDto = this.findByUsername(username);
+        Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
+        adminDto.getRoles()
+                .forEach(role -> authorities
+                        .add(new SimpleGrantedAuthority(role.getName())));
+
+        return new User(
+                adminDto.getUsername(),
+                adminDto.getPassword(),
+                true,
+                true,
+                true,
+                true,
+               authorities);
     }
 
     public AdminDto login(LoginDto loginDto) throws Exception {
@@ -47,16 +74,27 @@ public class AdminService {
         }else{
             if(loginDto.getPassword().equals(admin.getPassword()) &&
                     loginDto.getUsername().equals(admin.getUsername())){
-                    return from(admin);
+                return from(admin);
             }else{
                 throw new Exception(" Data not found");
             }
         }
     }
 
+    public AdminDto register(AdminDto administrator) throws Exception {
+        if(isNull(administrator)){
+            throw new Exception(" Null Object");
+        }else{
+            String encodedPassword = new BCryptPasswordEncoder().encode(administrator.getPassword());
+
+            administrator.setPassword(encodedPassword);
+            return from(this.adminRepository.save(requireNonNull(Admin.from(administrator))));
+        }
+    }
+
     public AdminDto findByUsername(final String username) throws Exception {
         Admin admin = this.adminRepository.findByUsername(username);
-        if(Objects.nonNull(admin)){
+        if(nonNull(admin)){
             return AdminDto.from(admin);
         }else{
             throw new Exception("Null Admin");
@@ -64,6 +102,22 @@ public class AdminService {
     }
 
                     // Operations
+
+    public Role saveRole(Role role){
+        return this.roleRepository.save(role);
+    }
+
+    public void addRoleToAdmin( String username, String roleName) throws Exception {
+        Admin admin = Admin.from(this.findByUsername(username));
+        Role role = this.roleRepository.findByName(roleName);
+
+        if(nonNull(admin) && nonNull(role)){
+            admin.addRole(role);
+        }else {
+            throw new Exception(" One of those object is null");
+        }
+    }
+
     public AdminDto addAdresse(String username, Long adrId) throws Exception {
         Admin admin = Admin.from(this.findByUsername(username));
         Adresse adresse = Adresse.from(this.adresseService.getOne(adrId));
@@ -201,5 +255,4 @@ public class AdminService {
             throw new Exception(" Media not found");
         }
     }
-
 }

@@ -1,12 +1,14 @@
 package com.magesty.backend.models.dto;
 
 import com.magesty.backend.models.Admin;
+import com.magesty.backend.models.Role;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -20,6 +22,7 @@ public class AdminDto {
     private String email;
     private String password;
 
+    private Collection<Role> roles = new ArrayList<>();
     private List<EducationDto> educationDtoList = new ArrayList<>();
     private List<AdresseDto> adresseDtoList = new ArrayList<>();
     private List<CompetenceDto> competenceDtoList = new ArrayList<>();
@@ -41,6 +44,7 @@ public class AdminDto {
             adminDto.setUsername(admin.getUsername());
 
             adminDto.setProfileDto(ProfileDto.from(admin.getProfile()));
+            adminDto.setRoles(admin.getRoles());
 
             adminDto.setEducationDtoList(admin.getEducationList()
                     .stream()

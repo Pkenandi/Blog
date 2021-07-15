@@ -34,4 +34,9 @@ public class ProfileService {
         return ProfileDto.from(this.profileRepository.findById(id)
                 .orElseThrow(() -> new Exception("Profile Not found")));
     }
+
+    public ProfileDto getAdminProfile(final String username) throws Exception {
+        return ProfileDto.from(this.profileRepository.findByAdminUsername(username)
+                .orElseThrow(() -> new Exception(" Admin profile not found")));
+    }
 }
