@@ -15,7 +15,6 @@ import java.util.UUID;
 @Data
 public class PlainProfileDto {
     private Long id;
-    private String imgUrl;
     private String content;
 
     public static PlainProfileDto from(Profile profile){
@@ -25,7 +24,6 @@ public class PlainProfileDto {
             return null;
         }else{
             profileDto.setId(profile.getId());
-            profileDto.setImgUrl(profile.getImgUrl());
             profileDto.setContent(profile.getContent());
 
             return profileDto;

@@ -18,8 +18,9 @@ import static org.springframework.http.HttpStatus.*;
 public class LangueResource {
     private final LangueService langueService;
 
-    @PostMapping(value = "add")
-    public ResponseEntity<LangueDto> addLangue(@RequestBody final LangueDto langueDto){
+    @PostMapping(value = "add", produces = {"application/json", "application/xml"}
+            ,consumes = {"application/x-www-form-urlencoded"})
+    public ResponseEntity<LangueDto> addLangue(final LangueDto langueDto){
         return new ResponseEntity<>(this.langueService.addLangue(langueDto), OK);
     }
 

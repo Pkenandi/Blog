@@ -2,14 +2,11 @@ package com.magesty.backend.service;
 
 import com.magesty.backend.models.*;
 import com.magesty.backend.models.dto.*;
-import com.magesty.backend.models.plainDto.PlainAdminDto;
-import com.magesty.backend.models.plainDto.PlainSocialMediaDto;
 import com.magesty.backend.repository.AdminRepository;
 import com.magesty.backend.repository.RoleRepository;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -22,7 +19,6 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Objects;
 
 import static com.magesty.backend.models.dto.AdminDto.*;
 import static java.util.Objects.*;
@@ -30,7 +26,6 @@ import static java.util.Objects.*;
 @AllArgsConstructor
 @Service
 @Transactional
-@Slf4j
 public class AdminService implements UserDetailsService {
     private final AdminRepository adminRepository;
     private final RoleRepository roleRepository;
@@ -66,7 +61,7 @@ public class AdminService implements UserDetailsService {
                authorities);
     }
 
-    public AdminDto login(LoginDto loginDto) throws Exception {
+    public AdminDto login(LoginRequest loginDto) throws Exception {
         Admin admin = this.adminRepository.findByUsername(loginDto.getUsername());
 
         if(isNull(admin)){
@@ -92,7 +87,7 @@ public class AdminService implements UserDetailsService {
         }
     }
 
-    public AdminDto findByUsername(final String username) throws Exception {
+    public AdminDto findByUsername(String username) throws Exception {
         Admin admin = this.adminRepository.findByUsername(username);
         if(nonNull(admin)){
             return AdminDto.from(admin);

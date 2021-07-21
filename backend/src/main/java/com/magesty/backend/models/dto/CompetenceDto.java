@@ -15,7 +15,6 @@ public class CompetenceDto {
     private Long id;
     private String name;
     private Integer numberOfYear;
-    private String description;
 
     private PlainAdminDto plainAdminDto;
 
@@ -25,7 +24,6 @@ public class CompetenceDto {
         if(competence != null){
             competenceDto.setId(competence.getId());
             competenceDto.setName(competence.getName());
-            competenceDto.setDescription(competence.getDescription());
             competenceDto.setNumberOfYear(competence.getNumberOfYear());
 
             competenceDto.setPlainAdminDto(PlainAdminDto.from(competence.getAdmin()));

@@ -11,12 +11,13 @@ import java.util.List;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("/api/skills/")
+@RequestMapping("/api/competence/")
 public class CompetenceResource {
     private final CompetenceService competenceService;
 
-    @PostMapping(value = "add")
-    public ResponseEntity<CompetenceDto> addCompetence(@RequestBody final CompetenceDto competenceDto){
+    @PostMapping(value = "add", produces = {"application/json", "application/xml"}
+            ,consumes = {"application/x-www-form-urlencoded"})
+    public ResponseEntity<CompetenceDto> addCompetence(final CompetenceDto competenceDto){
         return new ResponseEntity<>(this.competenceService.addCompetence(competenceDto), HttpStatus.OK);
     }
 

@@ -14,7 +14,6 @@ import java.util.Objects;
 public class ProfileDto {
     private Long id;
     private String content;
-    private String imgUrl;
     private PlainAdminDto plainAdminDto;
 
     public static ProfileDto from(Profile profile){
@@ -25,7 +24,6 @@ public class ProfileDto {
         }else{
             profileDto.setId(profile.getId());
             profileDto.setContent(profile.getContent());
-            profileDto.setImgUrl(profile.getImgUrl());
             profileDto.setPlainAdminDto(PlainAdminDto.from(profile.getAdmin()));
 
             return profileDto;

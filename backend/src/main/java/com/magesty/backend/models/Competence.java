@@ -21,7 +21,6 @@ public class Competence implements Serializable {
     private Long id;
     private String name;
     private Integer numberOfYear;
-    private String description;
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToOne(fetch = FetchType.LAZY)
@@ -36,7 +35,6 @@ public class Competence implements Serializable {
         }else{
             competence.setId(competenceDto.getId());
             competence.setName(competenceDto.getName());
-            competence.setDescription(competenceDto.getDescription());
             competence.setNumberOfYear(competenceDto.getNumberOfYear());
 
             return competence;

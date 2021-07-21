@@ -29,6 +29,12 @@ public class AuthorizationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filter) throws ServletException, IOException {
         String secret = "TOTsu1V5mubEXPmAFVtysHzhlrRadCChslulhFBKWYEQuuSzOxnomIX3xiVpi@P_ik";
 
+        response.addHeader("Access-Control-Allow-Origin","http://localhost:4200");
+        response.addHeader("Access-Control-Allow-Methods","GET,HEAD,PUT,POST,DELETE,OPTIONS");
+        response.addHeader("Access-Control-Allow-Headers","Access-Control-Request-Headers,Origin,Accept,X-Requested-With,Content-Type," +
+                "Jwt-Token,"+"Authorization,Access-Control-Request-Method");
+        response.addHeader("Access-Control-Expose-Headers","Authorization,Access-Control-Allow-Origin,Access-Control-Allow-Origin,Access-Control-Allow-Credentials");
+
         if (request.getServletPath().equals("/login") ||
                 request.getServletPath().equals("/api/op/register") ||
                 request.getServletPath().equals("/api/token/refresh")) {

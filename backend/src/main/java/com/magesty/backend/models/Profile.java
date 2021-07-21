@@ -21,7 +21,6 @@ public class Profile implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String content;
-    private String imgUrl;
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @OneToOne(fetch = FetchType.LAZY)
@@ -35,7 +34,6 @@ public class Profile implements Serializable {
             return null;
         }else{
             profile.setId(profileDto.getId());
-            profile.setImgUrl(profile.getImgUrl());
             profile.setContent(profileDto.getContent());
 
             return profile;

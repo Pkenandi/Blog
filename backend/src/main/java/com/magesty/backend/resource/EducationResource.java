@@ -15,8 +15,9 @@ import java.util.List;
 public class EducationResource {
     private final EducationService educationService;
 
-    @PostMapping(value = "add")
-    public ResponseEntity<EducationDto> addEducation(@RequestBody final EducationDto educationDto){
+    @PostMapping(value = "add", produces = {"application/json", "application/xml"}
+            ,consumes = {"application/x-www-form-urlencoded"})
+    public ResponseEntity<EducationDto> addEducation(final EducationDto educationDto){
         return new ResponseEntity<>(this.educationService.addEducation(educationDto), HttpStatus.OK);
     }
 

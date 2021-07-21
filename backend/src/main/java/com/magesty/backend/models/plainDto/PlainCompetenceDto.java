@@ -16,7 +16,6 @@ public class PlainCompetenceDto {
     private Long id;
     private String name;
     private Integer numberOfYear;
-    private String description;
 
     public static PlainCompetenceDto from(Competence competence){
         PlainCompetenceDto competenceDto = new PlainCompetenceDto();
@@ -26,7 +25,6 @@ public class PlainCompetenceDto {
         }else{
             competenceDto.setId(competence.getId());
             competenceDto.setName(competence.getName());
-            competenceDto.setDescription(competence.getDescription());
             competenceDto.setNumberOfYear(competence.getNumberOfYear());
 
             return competenceDto;

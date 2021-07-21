@@ -16,8 +16,9 @@ import java.util.List;
 public class AdresseResource {
     private final AdresseService adresseService;
 
-    @PostMapping(value = "add")
-    public ResponseEntity<AdresseDto> addAdresse(@RequestBody final AdresseDto adresseDto){
+    @PostMapping(value = "add", produces = {"application/json", "application/xml"}
+            ,consumes = {"application/x-www-form-urlencoded"})
+    public ResponseEntity<AdresseDto> addAdresse(final AdresseDto adresseDto){
         return new ResponseEntity<>(this.adresseService.addAdresse(adresseDto), HttpStatus.OK);
     }
 
