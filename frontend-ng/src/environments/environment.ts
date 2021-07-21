@@ -7,6 +7,7 @@ export const environment = {
 };
 
 export const basedUrl = "http://localhost:8088/api/";
+export const loginUrl = "http://localhost:8088/login";
 
 /*
  * For easier debugging in development mode, you can import the following file

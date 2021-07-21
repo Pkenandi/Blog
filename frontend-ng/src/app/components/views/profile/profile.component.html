@@ -1,1 +1,29 @@
-<p>profile works!</p>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 info shadow">
+      <div *ngIf="!profile; else showProfile">
+        <div class="alert alert-info">
+          Pas de profil professionnel disponible pour l'instant ...
+        </div>
+      </div>
+      <ng-template #showProfile>
+        <div class="myProfil">
+          <div class="img">
+            <img src="assets/image/Prince.jpg" alt="Photo de profile" width="330" height="350"/>
+          </div>
+          <p> {{profile.content}}</p>
+        </div>
+      </ng-template>
+    </div>
+
+    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+      <div class="langue">
+        <div *ngFor="let item of langues">
+          <h5 style="color: #3A6073"> {{item.name }}</h5>
+          <small style="color: red"> {{item.level }}</small>
+          <hr>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

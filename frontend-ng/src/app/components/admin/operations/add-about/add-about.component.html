@@ -1,3 +1,42 @@
 <div class="container">
-  <p>add-about works!</p>
+  <div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 info">
+      <div>
+        <h2> Ajout des langues </h2>
+        <div class="profile">
+          <form [formGroup]="langueForm" (ngSubmit)="setLangue()" autocomplete="off">
+            <div class="mb-3">
+              <input type="text" class="form-control" name="name" formControlName="name" placeholder="Name ...">
+            </div>
+            <div class="mb-3">
+              <select class="form-select" formControlName="level">
+                <option value="" disabled selected> - Level - </option>
+                <option value="entry"> Entry </option>
+                <option value="intermediate"> Intermediate </option>
+                <option value="advanced"> Advanced </option>
+              </select>
+            </div>
+            <div class="button">
+              <button class="btn btn-sm btn-info" type="submit"> <mat-icon>add</mat-icon> </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+        <div *ngIf="langues.length === 0; else showLangues">
+          <div class="alert alert-info">
+            Aucune langue ajoutée actuellement ...
+          </div>
+        </div>
+      <ng-template #showLangues>
+        <div class="langue" *ngFor="let item of langues">
+          <h5 style="color: #3A6073"> {{item.name }}</h5>
+            <small style="color: red"> {{item.level }}</small>
+          <hr>
+        </div>
+      </ng-template>
+    </div>
+  </div>
 </div>

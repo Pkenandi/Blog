@@ -19,6 +19,8 @@ import {AddEducationComponent} from "./components/admin/operations/add-education
 import {AddExperienceComponent} from "./components/admin/operations/add-experience/add-experience.component";
 import {AddProfileComponent} from "./components/admin/operations/add-profile/add-profile.component";
 import {AddInterestComponent} from "./components/admin/operations/add-interest/add-interest.component";
+import {ProfileComponent} from "./components/views/profile/profile.component";
+import {AddAboutComponent} from "./components/admin/operations/add-about/add-about.component";
 
 const routes: Routes = [
   {path: "home", component: HomeComponent},
@@ -40,7 +42,7 @@ const routes: Routes = [
       },
       {
         path: 'add-curriculum',
-        component: AddCurriculumComponent
+        component: AddAboutComponent
       },
       {
         path: 'add-realisation',
@@ -81,6 +83,7 @@ const routes: Routes = [
   {path: "realisations", component: ProjetComponent},
   {path: "curriculum", component: CurriculumComponent},
   {path: "education", component: EducationComponent},
+  {path: "profile", component: ProfileComponent},
 
             /* Redirecting */
   {path: "**", redirectTo: "home", pathMatch: "full"}

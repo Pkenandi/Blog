@@ -1,0 +1,25 @@
+.info {
+  padding: 20px;
+}
+
+.profile {
+  border: 1px solid #7b7979;
+  border-radius: 5px;
+  width: 300px;
+  padding: 10px;
+}
+
+.skill {
+  border: #007bb7 solid 1px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+span{
+  color: red;
+}
+.description{
+  font-family: "Book Antiqua" ,sans-serif;
+  font-style: italic;
+  font-weight: bold;
+}

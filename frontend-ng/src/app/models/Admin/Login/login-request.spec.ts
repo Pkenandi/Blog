@@ -1,4 +1,4 @@
-import { LoginRequest } from './login-request';
+import { LoginRequest } from './loginRequest';
 
 describe('LoginRequest', () => {
   it('should create an instance', () => {

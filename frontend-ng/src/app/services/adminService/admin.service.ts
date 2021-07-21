@@ -1,23 +1,82 @@
 import { Injectable } from '@angular/core';
-import {LoginRequest} from "../../models/Admin/Login/login-request";
 import {Observable} from "rxjs";
 import {Admin} from "../../models/Admin/admin";
-import {HttpClient} from "@angular/common/http";
-import {basedUrl} from "../../../environments/environment";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {basedUrl, loginUrl} from "../../../environments/environment";
+import {LoginRequest} from "../../models/Admin/Login/loginRequest";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminService {
 
+  access_token = "";
+  refresh_token = "";
+  isLoggedIn = false;
+
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'AUTHORIZATION': 'Bearer '+ this.getAccessToken()
+    })
+  };
+
   constructor(private http: HttpClient) { }
 
-  login(login: LoginRequest): Observable<Admin>{
-    return this.http.post<Admin>(`${basedUrl}admin/login`,login);
+  // Login and register
+
+  login(username: string, password: string): Observable<any>{
+    let body = new URLSearchParams();
+    body.set('username', username);
+    body.set('password', password)
+
+    let options = {
+      headers: new HttpHeaders()
+        .set('Content-Type', 'application/x-www-form-urlencoded'),
+    };
+    return this.http.post<any>(`${loginUrl}`,body.toString(), options);
+  }
+
+  logout(): void {
+    this.isLoggedIn = false;
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("refresh_token");
   }
 
   register(register: Admin): Observable<Admin>{
     return this.http.post<Admin>(`${basedUrl}admin/register`,register)
   }
 
+  saveToken(refresh_token: string, access_token: string){
+    localStorage.setItem("access_token", access_token);
+    localStorage.setItem("refresh_token", refresh_token);
+    this.access_token = access_token;
+    this.refresh_token = refresh_token;
+    this.isLoggedIn = true;
+  }
+
+  // Operations
+  setProfile(username: string, id: number): Observable<Admin>{
+    return this.http.get<Admin>(`${basedUrl}admin/${username}/${id}/addProfile`, this.httpOptions);
+  }
+
+  setInterest(username: string, id: number): Observable<Admin>{
+    return this.http.get<Admin>(`${basedUrl}admin/${username}/${id}/addInterest`, this.httpOptions);
+  }
+
+  setCompetence(username: string, id: number): Observable<Admin>{
+    return this.http.get<Admin>(`${basedUrl}admin/${username}/${id}/addCompetence`, this.httpOptions);
+  }
+
+  setLangue(username: string, id: number) {
+    return this.http.get<Admin>(`${basedUrl}admin/${username}/${id}/addLangue`, this.httpOptions);
+  }
+
+  getAccessToken(): string{
+    return <string>localStorage.getItem("access_token");
+  }
+
+  getRefreshToken(): string{
+    return <string>localStorage.getItem("refresh_token");
+  }
 }

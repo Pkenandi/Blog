@@ -1,3 +1,30 @@
 <div class="container">
-  <p>add-profile works!</p>
+  <div class="row justify-content-center">
+    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 info shadow">
+      <div *ngIf="!profile; else showProfile">
+        <h2> Profile professionnel </h2>
+        <div class="profile">
+          <form [formGroup]="profileForm" (ngSubmit)="setProfile()">
+            <div class="mb-3">
+              <label> Ajouter votre profil professionnel </label> <br> <br>
+              <textarea class="form-control" formControlName="content" name="content" rows="3">
+            </textarea>
+            </div>
+            <div class="button">
+              <button class="btn btn-sm btn-secondary" type="submit"> <mat-icon>add</mat-icon> </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <ng-template #showProfile>
+        <div class="myProfil">
+          <div class="img">
+            <img src="assets/image/Prince.jpg" alt="Photo de profile" width="330" height="350"/>
+          </div>
+          <p> {{profile.content}}</p>
+        </div>
+        <button class="btn btn-sm" style="color: red"> cliquez ici pour le modifier </button>
+      </ng-template>
+    </div>
+  </div>
 </div>

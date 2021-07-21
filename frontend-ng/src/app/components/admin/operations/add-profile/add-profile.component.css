@@ -1,0 +1,21 @@
+.info{
+  border: 1px solid whitesmoke;
+  padding: 10px;
+}
+
+.profile{
+  border: 1px solid #a19f9f;
+  border-radius: 5px;
+  padding: 10px;
+  margin-top: 50px;
+}
+
+.myProfil{
+  font-style: italic;
+}
+
+.myProfil .img img{
+  border-radius: 100%;
+  margin-left: 100px;
+  margin-bottom: 5px;
+}
