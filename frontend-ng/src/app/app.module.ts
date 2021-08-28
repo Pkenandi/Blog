@@ -26,7 +26,7 @@ import { CurriculumComponent } from './components/views/curriculum/curriculum.co
 import { ProjetComponent } from './components/views/projet/projet.component';
 import { ContactComponent } from './components/views/contact/contact.component';
 import { AboutComponent } from './components/views/about/about.component';
-import { AddAboutComponent } from './components/admin/operations/add-about/add-about.component';
+import { AddLangueComponent } from './components/admin/operations/add-langue/add-langue.component';
 import { EducationComponent } from './components/views/education/education.component';
 import { WrapperComponent } from './components/admin/wrapper/wrapper.component';
 import { AddContactComponent } from './components/admin/operations/add-contact/add-contact.component';
@@ -60,7 +60,7 @@ import { LogoutComponent } from './components/admin/logout/logout.component';
     ProjetComponent,
     ContactComponent,
     AboutComponent,
-    AddAboutComponent,
+    AddLangueComponent,
     EducationComponent,
     WrapperComponent,
     AddContactComponent,

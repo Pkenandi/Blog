@@ -18,7 +18,7 @@ export class CompetenceService {
   setCompetence(competence: Competence): Observable<Competence>{
     let data = new URLSearchParams();
     data.set("name", competence.name);
-    data.set("numberOfYear", competence.numberOfYear);
+    data.set("numberOfYear", competence.numberOfYear.toString());
 
     let options = this.authService.tokenInjector();
 

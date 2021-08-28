@@ -23,14 +23,18 @@
     <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
       <div *ngIf="competences.length === 0; else showCompetence">
         <div class="alert alert-info">
-          Aucune competence ajoutée actuellement ...
+          Aucune compétence ajoutée actuellement ...
         </div>
       </div>
       <ng-template #showCompetence>
         <div *ngFor="let item of competences">
           <div class="skill">
-            <h5>{{item?.name}}</h5>
-            [ <span>{{item?.numberOfYear}} an(s) </span> ] <span style="margin-left: 400px; cursor:pointer;">edit</span>
+            <h5 style="margin-right: 5px;">{{item?.name}}</h5>
+            [
+              <span *ngIf="item?.numberOfYear <= 0"> entry </span>
+              <span *ngIf="item?.numberOfYear == 1"> {{item?.numberOfYear}} an </span>
+              <span *ngIf="item?.numberOfYear > 1"> {{item?.numberOfYear}} ans </span>
+            ] <span style="margin-left: 400px; cursor:pointer;">edit</span>
           </div>
           <hr>
         </div>

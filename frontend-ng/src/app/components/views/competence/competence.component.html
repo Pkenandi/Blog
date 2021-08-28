@@ -1,1 +1,34 @@
-<p>competence works!</p>
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 info">
+      <div *ngIf="skills.length === 0; else showSkills">
+        <div class="alert alert-info">
+          No skills add yet ...
+        </div>
+      </div>
+      <ng-template #showSkills>
+        <h2 style="font-family: Cambria sans-serif"> Technical Skills</h2>
+        <div *ngFor="let skill of skills">
+          <div class="skill">
+            <p> {{skill?.name}} </p>
+            <span *ngIf="skill?.numberOfYear <= 0"> entry </span>
+            <span *ngIf="skill?.numberOfYear === 1"> {{skill?.numberOfYear}} an </span>
+            <span *ngIf="skill?.numberOfYear > 1"> {{skill?.numberOfYear}} ans </span>
+          </div>
+        </div>
+      </ng-template>
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 info">
+      <h3 style="font-family: Cambria sans-serif"> Soft Skills </h3>
+      <div class="soft-skills">
+        <p>
+          Très <span>empathique</span>, facilement <span>abordable</span> et <span>serviable</span><br>
+          sachant <span>travail seul</span> ou en <span>équipe</span>, possedant une facilité à <span>comminiqué</span> avec mes co-workers. <br>
+          Riche en <span>patience</span> et très <span>ouvert d'ésprit</span>, me considerant beaucoup plus comme un
+          <span>problem-solver</span> qui utilise la programmation comme outil pour y arrivé,<br>
+          possedant comme arme principal <span>la créativité</span> et capable de bien <span>gérer mon temps</span> et diviser mes tâches.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

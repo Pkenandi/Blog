@@ -7,10 +7,10 @@ import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-add-about',
-  templateUrl: './add-about.component.html',
-  styleUrls: ['./add-about.component.css']
+  templateUrl: './add-langue.component.html',
+  styleUrls: ['./add-langue.component.css']
 })
-export class AddAboutComponent implements OnInit {
+export class AddLangueComponent implements OnInit {
 
   langue!:Langue;
   langues: Langue[] = [];

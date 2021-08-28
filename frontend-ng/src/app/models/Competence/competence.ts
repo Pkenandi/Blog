@@ -1,9 +1,9 @@
 export class Competence {
   private _id: number;
   private _name: string;
-  private _numberOfYear: string;
+  private _numberOfYear: number;
 
-  constructor(id: number, name: string, numberOfYear: string) {
+  constructor(id: number, name: string, numberOfYear: number) {
     this._id = id;
     this._name = name;
     this._numberOfYear = numberOfYear;
@@ -25,11 +25,11 @@ export class Competence {
     this._name = value;
   }
 
-  get numberOfYear(): string {
+  get numberOfYear(): number {
     return this._numberOfYear;
   }
 
-  set numberOfYear(value: string) {
+  set numberOfYear(value: number) {
     this._numberOfYear = value;
   }
 }

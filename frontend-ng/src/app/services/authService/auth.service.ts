@@ -21,7 +21,7 @@ export class AuthService {
 
   setToken(): void{
     localStorage.setItem('access_token', this.getAccessToken());
-    localStorage.setItem('refresh_token', this.getRefresh_token())
+    localStorage.setItem('refresh_token', this.getRefresh_token());
   }
 
   getExpirationDate(){

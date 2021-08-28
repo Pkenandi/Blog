@@ -20,7 +20,7 @@ import {AddExperienceComponent} from "./components/admin/operations/add-experien
 import {AddProfileComponent} from "./components/admin/operations/add-profile/add-profile.component";
 import {AddInterestComponent} from "./components/admin/operations/add-interest/add-interest.component";
 import {ProfileComponent} from "./components/views/profile/profile.component";
-import {AddAboutComponent} from "./components/admin/operations/add-about/add-about.component";
+import {AddLangueComponent} from "./components/admin/operations/add-langue/add-langue.component";
 
 const routes: Routes = [
   {path: "home", component: HomeComponent},
@@ -42,7 +42,7 @@ const routes: Routes = [
       },
       {
         path: 'add-curriculum',
-        component: AddAboutComponent
+        component: AddLangueComponent
       },
       {
         path: 'add-realisation',
