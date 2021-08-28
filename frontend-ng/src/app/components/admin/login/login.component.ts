@@ -31,7 +31,6 @@ export class LoginComponent implements OnInit {
       .subscribe(
         (response) => {
           this.adminService.saveToken(response.refresh_token, response.access_token);
-          this.adminService.isLoggedIn = true;
           this.route.navigate(['admin/dashboard']).then();
         },
         (error : HttpErrorResponse) => {

@@ -32,11 +32,13 @@ import { WrapperComponent } from './components/admin/wrapper/wrapper.component';
 import { AddContactComponent } from './components/admin/operations/add-contact/add-contact.component';
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatListModule} from "@angular/material/list";
-import {HttpClientModule} from "@angular/common/http";
+import {HttpClientModule, HttpInterceptor, HttpClient, HTTP_INTERCEPTORS} from "@angular/common/http";
 import { AddProfileComponent } from './components/admin/operations/add-profile/add-profile.component';
 import { AddInterestComponent } from './components/admin/operations/add-interest/add-interest.component';
 import { InterestComponent } from './components/views/interest/interest.component';
 import { ProfileComponent } from './components/views/profile/profile.component';
+import { TokenInterceptorService  } from "./services/tokenService/token-interceptor.service";
+import { LogoutComponent } from './components/admin/logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +67,8 @@ import { ProfileComponent } from './components/views/profile/profile.component';
     AddProfileComponent,
     AddInterestComponent,
     InterestComponent,
-    ProfileComponent
+    ProfileComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
@@ -82,7 +85,13 @@ import { ProfileComponent } from './components/views/profile/profile.component';
     MatSidenavModule,
     MatListModule
   ],
-  providers: [],
+  providers: [
+  //   {
+  //   provide: HTTP_INTERCEPTORS,
+  //   useClass: TokenInterceptorService,
+  //   multi: true
+  // }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 info shadow">
-      <div *ngIf="!profile; else showProfile">
+      <div *ngIf="profileList.length === 0">
         <h2> Profile professionnel </h2>
         <div class="profile">
           <form [formGroup]="profileForm" (ngSubmit)="setProfile()">
@@ -16,15 +16,15 @@
           </form>
         </div>
       </div>
-      <ng-template #showProfile>
-        <div class="myProfil">
+      <div *ngIf="profileList.length > 0">
+        <div class="myProfil" *ngFor="let item of profileList">
           <div class="img">
             <img src="assets/image/Prince.jpg" alt="Photo de profile" width="330" height="350"/>
           </div>
-          <p> {{profile.content}}</p>
+          <p> {{item?.content}}</p>
         </div>
         <button class="btn btn-sm" style="color: red"> cliquez ici pour le modifier </button>
-      </ng-template>
+      </div>
     </div>
   </div>
 </div>

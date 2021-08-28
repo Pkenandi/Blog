@@ -4,6 +4,7 @@ import {Admin} from "../../models/Admin/admin";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {basedUrl, loginUrl} from "../../../environments/environment";
 import {LoginRequest} from "../../models/Admin/Login/loginRequest";
+import {AuthService} from "../authService/auth.service";
 
 @Injectable({
   providedIn: 'root'
@@ -17,11 +18,12 @@ export class AdminService {
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/x-www-form-urlencoded',
-      'AUTHORIZATION': 'Bearer '+ this.getAccessToken()
+      'AUTHORIZATION': `Bearer ${this.getAccessToken()}`
     })
   };
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private authService: AuthService) { }
 
   // Login and register
 
@@ -32,27 +34,13 @@ export class AdminService {
 
     let options = {
       headers: new HttpHeaders()
-        .set('Content-Type', 'application/x-www-form-urlencoded'),
+        .set('Content-Type', 'application/x-www-form-urlencoded')
     };
     return this.http.post<any>(`${loginUrl}`,body.toString(), options);
   }
 
-  logout(): void {
-    this.isLoggedIn = false;
-    localStorage.removeItem("access_token");
-    localStorage.removeItem("refresh_token");
-  }
-
   register(register: Admin): Observable<Admin>{
     return this.http.post<Admin>(`${basedUrl}admin/register`,register)
-  }
-
-  saveToken(refresh_token: string, access_token: string){
-    localStorage.setItem("access_token", access_token);
-    localStorage.setItem("refresh_token", refresh_token);
-    this.access_token = access_token;
-    this.refresh_token = refresh_token;
-    this.isLoggedIn = true;
   }
 
   // Operations
@@ -72,11 +60,39 @@ export class AdminService {
     return this.http.get<Admin>(`${basedUrl}admin/${username}/${id}/addLangue`, this.httpOptions);
   }
 
+  // Tokens
+  saveToken(refresh_token: string, access_token: string){
+    localStorage.setItem("access_token", access_token);
+    localStorage.setItem("refresh_token", refresh_token);
+    this.access_token = access_token;
+    this.refresh_token = refresh_token;
+    this.isLoggedIn = true;
+  }
+
   getAccessToken(): string{
     return <string>localStorage.getItem("access_token");
   }
 
-  getRefreshToken(): string{
+  getRefreshToken(): string {
     return <string>localStorage.getItem("refresh_token");
+  }
+
+  autoSendRefreshToken(): void{
+    setTimeout(() => {
+      let options = {
+        headers: new HttpHeaders()
+          .set('Content-Type', 'application/x-www-form-urlencoded')
+          .set('AUTHORIZATION', `Bearer ${JSON.stringify(localStorage.getItem('refresh_token'))}`)
+      };
+      this.http.get(`${basedUrl}token/refresh`, options)
+        .subscribe(
+          (response) => {
+            localStorage.clear();
+            localStorage.setItem("access_token", response['access_token']);
+            localStorage.setItem("refresh_token", response['refresh_token']);
+          }
+        )
+
+      }, this.authService.getExpirationDate().getMilliseconds());
   }
 }

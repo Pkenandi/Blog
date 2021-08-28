@@ -6,6 +6,7 @@ import {AdminService} from "../../../../services/adminService/admin.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import {LangueService} from "../../../../services/langueService/langue.service";
 import {Langue} from "../../../../models/Langue/langue";
+import {Admin} from "../../../../models/Admin/admin";
 
 @Component({
   selector: 'app-add-profile',
@@ -14,7 +15,9 @@ import {Langue} from "../../../../models/Langue/langue";
 })
 export class AddProfileComponent implements OnInit {
 
-  profile!: Profile;
+  profileList: Profile[] = [];
+  profile: Profile = null;
+  adminInfo: Admin;
   username = "Prince";
 
   profileForm = new FormGroup({
@@ -27,14 +30,15 @@ export class AddProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getProfile("Prince");
+    this.getProfile();
   }
 
-  getProfile(username: string): void {
-    this.profileService.getProfile(username)
+  getProfile(): void {
+    this.profileService.getProfile()
       .subscribe(
         (profile) => {
-          this.profile = profile;
+          this.profileList = profile;
+          console.info(this.profileList);
         },
         (error) => {
 
@@ -44,14 +48,13 @@ export class AddProfileComponent implements OnInit {
 
   setProfile(): void {
     this.profile = this.profileForm.value;
-    if (this.profile.content != "") {
       this.profileService.setProfile(this.profile)
         .subscribe(
           (profile) => {
             this.adminService.setProfile("Prince", profile.id)
               .subscribe(
                 (success) => {
-                    this.getProfile(this.username);
+                    this.getProfile();
                     console.log(success);
                 },
                 (error : HttpErrorResponse) => {
@@ -63,7 +66,7 @@ export class AddProfileComponent implements OnInit {
             console.log(" Erreur 2 : ", error);
           }
         )
-    }
+
   }
 
 }

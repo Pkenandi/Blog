@@ -11,8 +11,7 @@ import {Langue} from "../../../models/Langue/langue";
 })
 export class ProfileComponent implements OnInit {
 
-  profile!: Profile;
-  username=  "Prince";
+  profile: Profile[] = [];
   langues: Langue[] = [];
 
   constructor(private profileService: ProfileService, private langueService: LangueService) { }
@@ -22,10 +21,10 @@ export class ProfileComponent implements OnInit {
   }
 
   getProfile(): void {
-    this.profileService.getProfile(this.username)
+    this.profileService.getProfile()
       .subscribe(
         (profile) => {
-          this.profile = profile;
+           this.profile = profile;
         },
         (error) => {
 

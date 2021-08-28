@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Title} from "@angular/platform-browser";
+import {AuthService} from "../../services/authService/auth.service";
 
 @Component({
   selector: 'app-header',
@@ -8,7 +9,8 @@ import {Title} from "@angular/platform-browser";
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private title: Title) { }
+  constructor(private title: Title,
+              public authService: AuthService) { }
 
   ngOnInit(): void {
   }

@@ -27,7 +27,7 @@ export class AddCompetenceComponent implements OnInit {
 
   setCompetence(): void {
     this.competence = this.competenceForm.value;
-    this.competenceService.set(this.competence)
+    this.competenceService.setCompetence(this.competence)
       .subscribe(
         (competence) => {
           this.adminService.setCompetence("Prince",competence.id)

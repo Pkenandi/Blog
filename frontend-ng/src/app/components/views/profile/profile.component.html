@@ -1,17 +1,17 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 info shadow">
-      <div *ngIf="!profile; else showProfile">
+      <div *ngIf="profile.length === 0; else showProfile">
         <div class="alert alert-info">
           Pas de profil professionnel disponible pour l'instant ...
         </div>
       </div>
       <ng-template #showProfile>
-        <div class="myProfil">
+        <div class="myProfil" *ngFor="let item of profile">
           <div class="img">
             <img src="assets/image/Prince.jpg" alt="Photo de profile" width="330" height="350"/>
           </div>
-          <p> {{profile.content}}</p>
+          <p> {{item?.content}}</p>
         </div>
       </ng-template>
     </div>
