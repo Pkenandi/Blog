@@ -56,6 +56,10 @@ export class AdminService {
     return this.http.get<Admin>(`${basedUrl}admin/${username}/${id}/addCompetence`, this.httpOptions);
   }
 
+  setEducation(admin: string, id: number): Observable<Admin> {
+    return this.http.get<Admin>(`${basedUrl}/admin/${admin}/${id}/addEducation`, this.httpOptions);
+  }
+
   setLangue(username: string, id: number) {
     return this.http.get<Admin>(`${basedUrl}admin/${username}/${id}/addLangue`, this.httpOptions);
   }
@@ -95,4 +99,5 @@ export class AdminService {
 
       }, this.authService.getExpirationDate().getMilliseconds());
   }
+
 }

@@ -1,3 +1,47 @@
 <div class="container">
-  <p>add-education works!</p>
+<div class="row mt-5">
+  <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+    <div class="form shadow">
+      <form [formGroup]="eduForm" (ngSubmit)="addEducation()" autocomplete="off">
+        <div class="mb-3">
+          <input type="text" formControlName="etablissement" name="etablissement" class="form-control" placeholder="Etablissement ... ">
+        </div>
+        <div class="mb-3">
+          <input type="text" formControlName="degree" name="degree" class="form-control" placeholder="Niveau ... ">
+        </div>
+        <div class="mb-3">
+          <input type="number" formControlName="average" name="average" class="form-control-sm" placeholder="Moyenne obtenue ... ">
+        </div>
+        <div class="mb-3">
+          <label> Date debut </label> <br>
+          <input type="date" formControlName="start" name="start" class="form-control-sm" placeholder="Date début ... "
+          [disabled]="current === true">
+        </div>
+        <div class="mb-3">
+          <label> Date fin </label> <br>
+          <input type="date" formControlName="expected_end" name="expected_end" class="form-control-sm" placeholder="Date fin ... "
+          id="date">
+        </div>
+        <div class="mb-3">
+          <label> En cours ? <span>*</span></label> <br>
+          <input type="checkbox" formControlName="current" name="current" class="form-check" id="check_box">
+        </div>
+
+        <div class="button">
+          <button class="btn "> <mat-icon>save</mat-icon></button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+  <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+    <div class="alert alert-info" *ngIf="educations.length === 0 else Else">
+      Pas disponible ...
+    </div>
+    <ng-template #Else>
+      Bientot afficher
+    </ng-template>
+  </div>
+</div>
 </div>

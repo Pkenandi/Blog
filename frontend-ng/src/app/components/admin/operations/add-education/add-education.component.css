@@ -1,0 +1,10 @@
+.form{
+  padding: 8px 9px;
+  border: 2px solid whitesmoke;
+  border-radius: 8px;
+  max-width: 450px;
+}
+
+.mb-3 span {
+  color: red;
+}
