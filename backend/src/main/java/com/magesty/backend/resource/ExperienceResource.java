@@ -15,9 +15,8 @@ import java.util.List;
 public class ExperienceResource {
     private final ExperienceService experienceService;
 
-    @PostMapping(value = "add", produces = {"application/json", "application/xml"}
-            ,consumes = {"application/x-www-form-urlencoded"})
-    public ResponseEntity<ExperienceDto> addExperience(final ExperienceDto experienceDto){
+    @PostMapping(value = "add")
+    public ResponseEntity<ExperienceDto> addExperience(@RequestBody final ExperienceDto experienceDto){
         return new ResponseEntity<>(this.experienceService.addExperience(experienceDto), HttpStatus.OK);
     }
 

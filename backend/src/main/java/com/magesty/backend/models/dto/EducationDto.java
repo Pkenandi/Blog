@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.UUID;
 
 @AllArgsConstructor
@@ -17,30 +18,34 @@ public class EducationDto {
     private Long id;
     private String etablissement;
     private String degree;
+    private String section;
     private String average;
     private LocalDate start;
     private LocalDate expected_end;
-    private boolean current;
+    private String current;
+    private String image;
 
     private PlainAdminDto plainAdminDto;
 
     public static EducationDto from(Education education){
         EducationDto educationDto = new EducationDto();
 
-        if(Objects.isNull(education)){
-            return null;
-        }else {
+        if(education != null){
             educationDto.setId(education.getId());
             educationDto.setDegree(education.getDegree());
             educationDto.setAverage(education.getAverage());
+            educationDto.setSection(education.getSection());
             educationDto.setEtablissement(education.getEtablissement());
-            educationDto.setCurrent(education.isCurrent());
+            educationDto.setCurrent(education.getCurrent());
             educationDto.setStart(education.getStart());
             educationDto.setExpected_end(education.getExpected_end());
+            educationDto.setImage(education.getImage());
 
             educationDto.setPlainAdminDto(PlainAdminDto.from(education.getAdmin()));
 
             return educationDto;
+        }else {
+            return null;
         }
     }
 }

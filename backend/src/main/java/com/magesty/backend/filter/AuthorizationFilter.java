@@ -57,11 +57,11 @@ public class AuthorizationFilter extends OncePerRequestFilter {
                             new UsernamePasswordAuthenticationToken(username, null, authorities);
                     SecurityContextHolder.getContext().setAuthentication(authenticationToken);
                     filter.doFilter(request, response);
-
                 } catch (Exception ex) {
                     response.setHeader("Erreur ", ex.getMessage());
                     Map<String, String> error = new HashMap<>();
                     error.put("error_message", ex.getMessage());
+
                     response.setContentType(APPLICATION_JSON_VALUE);
                     new ObjectMapper().writeValue(response.getOutputStream(), error);
                 }

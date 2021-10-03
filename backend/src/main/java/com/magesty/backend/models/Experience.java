@@ -1,7 +1,6 @@
 package com.magesty.backend.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.magesty.backend.models.dto.AdminDto;
 import com.magesty.backend.models.dto.ExperienceDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,7 +10,6 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
-import java.util.UUID;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -22,7 +20,9 @@ public class Experience implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String realisedAt;
+    @Column
     private LocalDate start;
+    @Column
     private LocalDate expected_end;
     private String description;
 

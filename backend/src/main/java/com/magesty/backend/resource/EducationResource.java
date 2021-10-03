@@ -4,9 +4,11 @@ import com.magesty.backend.models.dto.EducationDto;
 import com.magesty.backend.service.EducationService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -15,9 +17,9 @@ import java.util.List;
 public class EducationResource {
     private final EducationService educationService;
 
-    @PostMapping(value = "add", produces = {"application/json", "application/xml"}
-            ,consumes = {"application/x-www-form-urlencoded"})
-    public ResponseEntity<EducationDto> addEducation(final EducationDto educationDto){
+    @PostMapping(value = "add")
+    public @ResponseBody ResponseEntity<EducationDto> addEducation(@RequestBody final EducationDto educationDto){
+        System.out.println(educationDto.toString());
         return new ResponseEntity<>(this.educationService.addEducation(educationDto), HttpStatus.OK);
     }
 
@@ -30,5 +32,4 @@ public class EducationResource {
     public ResponseEntity<EducationDto> getOne(@PathVariable final Long id) throws Exception {
         return new ResponseEntity<>(this.educationService.getOne(id), HttpStatus.OK);
     }
-
 }

@@ -17,9 +17,8 @@ import static org.springframework.http.HttpStatus.*;
 public class SocialMediaResource {
     private final SocialMediaService socialMediaService;
 
-    @PostMapping(value = "add", produces = {"application/json", "application/xml"}
-            ,consumes = {"application/x-www-form-urlencoded"})
-    public ResponseEntity<SocialMediaDto> addMedia(final SocialMediaDto socialMediaDto){
+    @PostMapping(value = "add")
+    public ResponseEntity<SocialMediaDto> addMedia(@RequestBody final SocialMediaDto socialMediaDto){
         return new ResponseEntity<>(this.socialMediaService.addSocialMedia(socialMediaDto), OK);
     }
 

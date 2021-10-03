@@ -17,9 +17,8 @@ import static org.springframework.http.HttpStatus.*;
 public class ProjetResource {
     private final ProjetService projetService;
 
-    @PostMapping(value = "add", produces = {"application/json", "application/xml"}
-            ,consumes = {"application/x-www-form-urlencoded"})
-    public ResponseEntity<ProjetDto> addProjet(final ProjetDto projetDto){
+    @PostMapping(value = "add")
+    public ResponseEntity<ProjetDto> addProjet(@RequestBody final ProjetDto projetDto) {
         return new ResponseEntity<>(this.projetService.addProjet(projetDto), OK);
     }
 

@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
@@ -22,11 +23,13 @@ public class Education implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String etablissement;
+    private String section;
     private String degree;
     private String average;
     private LocalDate start;
     private LocalDate expected_end;
-    private boolean current;
+    private String image;
+    private String current;
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToOne(fetch = FetchType.LAZY)
@@ -42,10 +45,12 @@ public class Education implements Serializable {
             education.setId(educationDto.getId());
             education.setDegree(educationDto.getDegree());
             education.setAverage(educationDto.getAverage());
+            education.setSection(educationDto.getSection());
             education.setEtablissement(educationDto.getEtablissement());
-            education.setCurrent(educationDto.isCurrent());
+            education.setCurrent(educationDto.getCurrent());
             education.setStart(educationDto.getStart());
             education.setExpected_end(educationDto.getExpected_end());
+            education.setImage(educationDto.getImage());
 
             return education;
         }
