@@ -12,7 +12,6 @@ import {CurriculumComponent} from "./components/views/curriculum/curriculum.comp
 import {EducationComponent} from "./components/views/education/education.component";
 import {WrapperComponent} from "./components/admin/wrapper/wrapper.component";
 import {AddCompetenceComponent} from "./components/admin/operations/add-competence/add-competence.component";
-import {AddCurriculumComponent} from "./components/admin/operations/add-curriculum/add-curriculum.component";
 import {AddProjetComponent} from "./components/admin/operations/add-projet/add-projet.component";
 import {AddContactComponent} from "./components/admin/operations/add-contact/add-contact.component";
 import {AddEducationComponent} from "./components/admin/operations/add-education/add-education.component";
@@ -21,6 +20,7 @@ import {AddProfileComponent} from "./components/admin/operations/add-profile/add
 import {AddInterestComponent} from "./components/admin/operations/add-interest/add-interest.component";
 import {ProfileComponent} from "./components/views/profile/profile.component";
 import {AddLangueComponent} from "./components/admin/operations/add-langue/add-langue.component";
+import {LogoutComponent} from "./components/admin/logout/logout.component";
 
 const routes: Routes = [
   {path: "home", component: HomeComponent},
@@ -28,6 +28,7 @@ const routes: Routes = [
             /* Admin */
   {path: "admin/login", component: LoginComponent},
   {path: "admin/register", component: RegisterComponent},
+  {path: "admin/logout", component: LogoutComponent},
   {
     path: "admin",
     component: WrapperComponent,

@@ -56,8 +56,8 @@ export class AdminService {
     return this.http.get<Admin>(`${basedUrl}admin/${username}/${id}/addCompetence`, this.httpOptions);
   }
 
-  setEducation(admin: string, id: number): Observable<Admin> {
-    return this.http.get<Admin>(`${basedUrl}/admin/${admin}/${id}/addEducation`, this.httpOptions);
+  setEducation(username: string, id: number): Observable<Admin> {
+    return this.http.get<Admin>(`${basedUrl}admin/${username}/${id}/addEducation`, this.httpOptions);
   }
 
   setLangue(username: string, id: number) {
