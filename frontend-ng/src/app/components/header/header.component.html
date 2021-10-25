@@ -1,5 +1,5 @@
-<header class="header">
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+<header>
+<!--  <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
       <a class="navbar-brand img" routerLink="/home" (click)="setTitle('Acceuil')">
         <img src="assets/Icon/logo.png" alt="">
@@ -36,5 +36,57 @@
         <mat-icon>login</mat-icon>
       </button>
     </div>
+  </nav>-->
+  <nav class="navbar navbar-expand-custom navbar-mainbg">
+    <a class="navbar-brand navbar-logo img" routerLink="/home" (click)="setTitle('Acceuil')">
+      <img src="assets/Icon/logo.png" alt=""></a>
+    <button class="navbar-toggler" type="button" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+      <i class="fas fa-bars text-white"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+        <div class="hori-selector">
+          <div class="left"></div>
+          <div class="right"></div>
+        </div>
+        <li class="nav-item">
+          <a class="nav-link active" [routerLink]="'/Home'" (click)="setTitle('Home')">
+            <fa-icon [icon]="faHome"></fa-icon>
+            Acceuil </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="'/profile'" (click)="setTitle('Profile')">
+            <fa-icon [icon]="userIcon"></fa-icon>
+            Profil professionnel </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="'/realisations'" (click)="setTitle('Réalisations')">
+            <fa-icon [icon]="faProjectDiagram"></fa-icon>
+            Réalisations </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="'/skills'" (click)="setTitle('Skills')">
+            <fa-icon [icon]="faAward"></fa-icon>
+            Skills </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="'/experiences'" (click)="setTitle('Experiences')">
+            <fa-icon [icon]="faIndustry"></fa-icon>
+            Expériences </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="'/education'" (click)="setTitle('Education')">
+            <fa-icon [icon]="faBook"></fa-icon>
+            Educations </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="'/curriculum'" (click)="setTitle('Mon Cv')">
+            <fa-icon [icon]="userIcon"></fa-icon>
+            Overview ( CV ) </a>
+        </li>
+      </ul>
+    </div>
   </nav>
+
 </header>
