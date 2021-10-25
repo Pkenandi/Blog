@@ -1,1 +1,38 @@
-<p>projet works!</p>
+<div class="container">
+  <div class="section_our_solution">
+    <div class="row">
+      <div class="col-lg-6 col-md-6 col-sm-12" *ngFor="let item of projets">
+        <div class="our_solution_category" (click)="openDetails(detail)">
+          <div class="solution_cards_box">
+            <div class="solution_card">
+              <div class="hover_color_bubble"></div>
+              <div class="solu_title">
+                <h3>{{item?.projetName}}</h3>
+                <span> {{item?.seulOuGroup}} </span>
+              </div>
+              <div class="used-tech">
+                {{item?.techUsed}}
+              </div>
+              <div class="solu_description">
+                <p>
+                  {{item?.description}}
+                </p>
+                <div class="timestamp">
+                  <span *ngIf="item?.end != null">{{item?.start}}  -  {{item?.end}}</span>
+                  <span *ngIf="item?.end == null">{{item?.start}}  - ... </span>
+                  <span *ngIf="item.start == null && item.end == null"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modals Section -->
+
+<ng-template class="modal" let-modal #detail>
+  <h1> Coming soon </h1>
+</ng-template>
