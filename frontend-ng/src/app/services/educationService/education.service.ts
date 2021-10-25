@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {AuthService} from "../authService/auth.service";
 import {Education} from "../../models/Education/education";
 import {Observable} from "rxjs";
@@ -14,18 +14,24 @@ export class EducationService {
               private authService: AuthService) { }
 
   addEducation(education : Education): Observable<Education>{
-    let data = new URLSearchParams();
-    data.set("etablissement",education.etablissement);
-    data.set("degree",education.degree);
-    data.set("average",education.average);
-    data.set("start",String(education.start))
-    data.set("expected_end",String(education.expected_end))
-    data.set("current", String(education.current))
+    console.log(" Data service before: " ,education);
+    const data = new FormData();
+    data.set('start', "" + education.start)
+    data.set('etablissement',education.etablissement);
+    data.set('degree',education.degree);
+    data.set('average',education.average);
+    data.set('expected_end', "" + education.expected_end)
+    data.set('current', education.current)
+    console.log(" Data : " ,data);
 
-    return this.http.post<Education>(`${basedUrl}edu/add`,data.toString(), this.authService.tokenInjector())
+    return this.http.post<Education>(`${basedUrl}edu/add`,data, this.authService.tokenInjector())
   }
 
   getEducations(): Observable<Education[]>{
     return this.http.get<Education[]>(`${basedUrl}edu/all`);
+  }
+
+  getOne(id: number): Observable<Education> {
+    return this.http.get<Education>(`${basedUrl}edu/${id}`);
   }
 }

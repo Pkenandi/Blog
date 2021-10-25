@@ -33,19 +33,20 @@ export class AddEducationComponent implements OnInit {
 
   addEducation(): void {
     this.education = this.eduForm.value;
-    console.table(this.education);
+    console.log(" Data before : ", this.education);
     this.eduService.addEducation(this.education)
       .subscribe(
         (education) => {
-          this.adminService.setEducation("Prince",education.id)
-            .subscribe(
-              () => {
-                this.getEducations();
-              },
-              () => {
-                console.warn(" --- Error --- ");
-              }
-            )
+          console.log(" Data after : ", education);
+          // this.adminService.setEducation("Prince",education.id)
+          //   .subscribe(
+          //     () => {
+          //       this.getEducations();
+          //     },
+          //     () => {
+          //       console.warn(" --- Error --- ");
+          //     }
+          //   )
         }
       )
   }

@@ -2,20 +2,12 @@ export class Education {
   private _id: number;
   private _etablissement: string;
   private _degree: string;
+  private _section: string;
   private _average: string;
   private _start: Date;
   private _expected_end: Date;
-  private _current: boolean;
-
-  constructor(id: number, etablissement: string, degree: string, average: string, start: Date, expected_end: Date, current: boolean) {
-    this._id = id;
-    this._etablissement = etablissement;
-    this._degree = degree;
-    this._average = average;
-    this._start = start;
-    this._expected_end = expected_end;
-    this._current = current;
-  }
+  private _current: string;
+  private _image: string;
 
   get id(): number {
     return this._id;
@@ -27,6 +19,14 @@ export class Education {
 
   get etablissement(): string {
     return this._etablissement;
+  }
+
+  get section(): string {
+    return this._section;
+  }
+
+  set section(value: string) {
+    this._section = value;
   }
 
   set etablissement(value: string) {
@@ -65,11 +65,19 @@ export class Education {
     this._expected_end = value;
   }
 
-  get current(): boolean {
+  get current(): string {
     return this._current;
   }
 
-  set current(value: boolean) {
+  set current(value: string) {
     this._current = value;
+  }
+
+  get image(): string {
+    return this._image;
+  }
+
+  set image(value: string) {
+    this._image = value;
   }
 }

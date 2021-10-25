@@ -30,22 +30,20 @@ public class EducationDto {
     public static EducationDto from(Education education){
         EducationDto educationDto = new EducationDto();
 
-        if(education != null){
-            educationDto.setId(education.getId());
-            educationDto.setDegree(education.getDegree());
-            educationDto.setAverage(education.getAverage());
-            educationDto.setSection(education.getSection());
-            educationDto.setEtablissement(education.getEtablissement());
-            educationDto.setCurrent(education.getCurrent());
-            educationDto.setStart(education.getStart());
-            educationDto.setExpected_end(education.getExpected_end());
-            educationDto.setImage(education.getImage());
+        return Optional.ofNullable(education)
+                .map(edu -> {
+                    educationDto.setId(education.getId());
+                    educationDto.setDegree(education.getDegree());
+                    educationDto.setAverage(education.getAverage());
+                    educationDto.setSection(education.getSection());
+                    educationDto.setEtablissement(education.getEtablissement());
+                    educationDto.setCurrent(education.getCurrent());
+                    educationDto.setStart(education.getStart());
+                    educationDto.setExpected_end(education.getExpected_end());
+                    educationDto.setImage(education.getImage());
 
-            educationDto.setPlainAdminDto(PlainAdminDto.from(education.getAdmin()));
-
-            return educationDto;
-        }else {
-            return null;
-        }
+                    educationDto.setPlainAdminDto(PlainAdminDto.from(education.getAdmin()));
+                    return educationDto;
+                }).orElse(null);
     }
 }

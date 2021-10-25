@@ -1,1 +1,68 @@
-<p>education works!</p>
+<section class="wrapper">
+  <div class="container">
+    <div class="row">
+      <div *ngFor="let item of educations">
+        <div class="col-12">
+          <div class="card text-white card-has-bg click-col shadow"
+               style="background-image:url('{{item?.image}}');" (click)="openModal(education, item?.id)">
+            <img class="card-img d-none" src="https://source.unsplash.com/600x900/?tech,street"
+                 alt="image">
+            <div class="card-img-overlay d-flex flex-column">
+              <div class="card-body">
+                <small class="card-meta mb-2">{{item?.etablissement}}</small>
+                <h4 class="card-title mt-0 ">
+                  <a class="text-white" herf="#"> {{item?.section}}</a>
+                </h4>
+                De <small><i class="far fa-clock"></i> {{item?.start}}</small>
+                à <small><i class="far fa-clock"></i> {{item?.expected_end}}</small>
+              </div>
+              <div class="card-footer">
+                <div class="media">
+                  <img class="mr-3 rounded-circle"
+                       src="assets/image/graduation.png"
+                       alt="Generic placeholder image" style="max-width:50px">
+                  <div class="media-body">
+                    <h6 class="my-0 text-white d-block"> {{item?.degree}}</h6>
+                    <small>Moyenne Générale : {{item?.average}}</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Modal section -->
+
+<ng-template #education let-modal>
+  <div class="modal-header">
+    <h2 class="modal-title" id="modal-basic-title"> {{educationItem?.etablissement}} </h2>
+    <small style="font-style: italic"> {{educationItem?.degree}} </small>
+  </div>
+  <div class="modal-body" style="background-color: #cccccc">
+    <div class="row">
+      <div class="container">
+        <div class="alert">
+          <div class="average"> {{educationItem?.section}} </div>
+          <div class="average"> Moyenne générale : {{educationItem?.average}} </div>
+        </div>
+         <small>De {{educationItem?.start}} à {{educationItem?.expected_end}}</small>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <div class="row">
+      <div class="col-8">
+        <button type="button" class="btn btn-outline-light text-dark fa fa-arrow-left"
+                (click)="modal.close('Close click')">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<!-- End Modal section -->
