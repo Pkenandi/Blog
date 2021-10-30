@@ -2,11 +2,14 @@
 /*FOOTER*/
 
 footer {
+  position: absolute;
   background-color:  	#DCDCDC;
   background: -webkit-linear-gradient(59deg, #3A6073, #9fa6ac);
   background: linear-gradient(59deg, #3A6073, #848b92);
   color: white;
-  margin-top:100px;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 footer a {
