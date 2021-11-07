@@ -2,14 +2,11 @@
 /*FOOTER*/
 
 footer {
-  position: absolute;
   background-color:  	#DCDCDC;
   background: -webkit-linear-gradient(59deg, #3A6073, #9fa6ac);
   background: linear-gradient(59deg, #3A6073, #848b92);
   color: white;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  margin-top: 10px;
 }
 
 footer a {
@@ -44,13 +41,13 @@ ul.social-network {
   display: inline;
   margin-left: 0 !important;
   padding: 0;
+  align-content: center;
 }
 
 ul.social-network li {
   display: inline;
   margin: 0 5px;
 }
-
 
 /* footer social icons */
 
