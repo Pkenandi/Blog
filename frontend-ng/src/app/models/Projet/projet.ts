@@ -1,4 +1,11 @@
 export class Projet {
+  get imageUrl(): string {
+    return this._imageUrl;
+  }
+
+  set imageUrl(value: string) {
+    this._imageUrl = value;
+  }
   private _id: number;
   private _projetName: string;
   private _start: Date;
@@ -6,9 +13,10 @@ export class Projet {
   private _techUsed: string;
   private _seulOuGroup: string;
   private _description: string;
+  private _imageUrl: string;
   private _current: boolean;
 
-  constructor(id: number, projetName: string, start: Date, end: Date, techUsed: string, seulOuGroup: string, description: string, current: boolean) {
+  constructor(id: number, projetName: string, start: Date, end: Date, techUsed: string, seulOuGroup: string, description: string, imageUrl: string, current: boolean) {
     this._id = id;
     this._projetName = projetName;
     this._start = start;
@@ -17,6 +25,7 @@ export class Projet {
     this._seulOuGroup = seulOuGroup;
     this._description = description;
     this._current = current;
+    this._imageUrl = imageUrl;
   }
 
   get id(): number {

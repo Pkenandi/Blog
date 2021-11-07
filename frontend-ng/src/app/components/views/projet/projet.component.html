@@ -2,7 +2,7 @@
   <div class="section_our_solution">
     <div class="row">
       <div class="col-lg-6 col-md-6 col-sm-12" *ngFor="let item of projets">
-        <div class="our_solution_category" (click)="openDetails(detail)">
+        <div class="our_solution_category" (click)="openDetails(detail, item.id)">
           <div class="solution_cards_box">
             <div class="solution_card">
               <div class="hover_color_bubble"></div>
@@ -34,5 +34,20 @@
 <!-- Modals Section -->
 
 <ng-template class="modal" let-modal #detail>
-  <h1> Coming soon </h1>
+   <div class="modal-content">
+     <div class="modal-header">
+        <img src="{{project?.imageUrl}}" height="80" width="70"/> <h3> {{project?.projetName}} </h3>
+       <button type="button" class="close" aria-label="Close" (click)="modal.close('Close click')">
+         <span aria-hidden="true">&times;</span>
+       </button>
+     </div>
+     <div class="modal-body">
+       <div class="description">
+         {{ project?.description }}
+       </div>
+     </div>
+     <div class="modal-footer">
+       {{ project?.start}} - {{ project?.end }}
+     </div>
+   </div>
 </ng-template>

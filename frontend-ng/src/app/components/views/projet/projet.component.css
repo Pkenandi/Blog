@@ -1,3 +1,9 @@
+.modal-content {
+  border-top: 6px solid  #3A6073;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
 .section_our_solution .row {
   align-items: center;
 }
