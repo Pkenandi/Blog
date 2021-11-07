@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.util.Objects;
+import java.util.Optional;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,6 +21,7 @@ public class ProjetDto {
     private String techUsed;
     private String seulOuGroup;
     private String description;
+    private String imageUrl;
     private boolean current;
 
     private PlainAdminDto plainAdminDto;
@@ -27,20 +29,19 @@ public class ProjetDto {
     public static ProjetDto from(Projet projet){
         ProjetDto projetDto = new ProjetDto();
 
-        if(Objects.isNull(projet)){
-            return null;
-        }else{
-            projetDto.setId(projet.getId());
-            projetDto.setProjetName(projet.getProjetName());
-            projetDto.setSeulOuGroup(projet.getSeulOuGroup());
-            projetDto.setDescription(projet.getDescription());
-            projetDto.setTechUsed(projet.getTechUsed());
-            projetDto.setCurrent(projet.isCurrent());
-            projetDto.setStart(projet.getStart());
-            projetDto.setEnd(projet.getEnd());
-            projetDto.setPlainAdminDto(PlainAdminDto.from(projet.getAdmin()));
+        return Optional.ofNullable(projet)
+                .map(project -> {
+                    projetDto.setId(project.getId());
+                    projetDto.setProjetName(project.getProjetName());
+                    projetDto.setSeulOuGroup(project.getSeulOuGroup());
+                    projetDto.setDescription(project.getDescription());
+                    projetDto.setTechUsed(project.getTechUsed());
+                    projetDto.setCurrent(project.isCurrent());
+                    projetDto.setStart(project.getStart());
+                    projetDto.setEnd(project.getEnd());
+                    projetDto.setImageUrl(project.getImageUrl());
 
-            return projetDto;
-        }
+                    return projetDto;
+                }).orElse(null);
     }
 }

@@ -29,6 +29,7 @@ public class Projet implements Serializable {
     private String techUsed;
     private String seulOuGroup;
     private String description;
+    private String imageUrl;
     private boolean current;
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
@@ -50,6 +51,7 @@ public class Projet implements Serializable {
             projet.setCurrent(projetDto.isCurrent());
             projet.setStart(projetDto.getStart());
             projet.setEnd(projetDto.getEnd());
+            projet.setImageUrl(projetDto.getImageUrl());
 
             return projet;
         }
