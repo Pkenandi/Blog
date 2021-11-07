@@ -39,6 +39,7 @@ import { AddInterestComponent } from './components/admin/operations/add-interest
 import { InterestComponent } from './components/views/interest/interest.component';
 import { ProfileComponent } from './components/views/profile/profile.component';
 import { TokenInterceptorService  } from "./services/tokenService/token-interceptor.service";
+import { ToastrModule } from 'ngx-toastr';
 import { LogoutComponent } from './components/admin/logout/logout.component';
 
 @NgModule({
@@ -85,7 +86,8 @@ import { LogoutComponent } from './components/admin/logout/logout.component';
     MatIconModule,
     MatToolbarModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    ToastrModule.forRoot()
   ],
   providers: [
   //   {
