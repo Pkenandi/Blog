@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Objects;
+import java.util.Optional;
 import java.util.UUID;
 
 @AllArgsConstructor
@@ -20,13 +21,12 @@ public class PlainProfileDto {
     public static PlainProfileDto from(Profile profile){
         PlainProfileDto profileDto = new PlainProfileDto();
 
-        if(Objects.isNull(profile)){
-            return null;
-        }else{
-            profileDto.setId(profile.getId());
-            profileDto.setContent(profile.getContent());
+        return Optional.ofNullable(profile)
+                .map(profiles -> {
+                    profileDto.setId(profiles.getId());
+                    profileDto.setContent(profiles.getContent());
 
-            return profileDto;
-        }
+                    return profileDto;
+                }).orElse(null);
     }
 }

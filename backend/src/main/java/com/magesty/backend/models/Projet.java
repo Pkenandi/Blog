@@ -13,6 +13,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.UUID;
 
 @AllArgsConstructor
@@ -40,20 +41,19 @@ public class Projet implements Serializable {
     public static Projet from(ProjetDto projetDto){
         Projet projet = new Projet();
 
-        if(Objects.isNull(projetDto)){
-            return null;
-        }else{
-            projet.setId(projetDto.getId());
-            projet.setProjetName(projetDto.getProjetName());
-            projet.setSeulOuGroup(projetDto.getSeulOuGroup());
-            projet.setDescription(projetDto.getDescription());
-            projet.setTechUsed(projetDto.getTechUsed());
-            projet.setCurrent(projetDto.isCurrent());
-            projet.setStart(projetDto.getStart());
-            projet.setEnd(projetDto.getEnd());
-            projet.setImageUrl(projetDto.getImageUrl());
+        return Optional.ofNullable(projetDto)
+                .map(projectDto -> {
+                    projet.setId(projectDto.getId());
+                    projet.setProjetName(projectDto.getProjetName());
+                    projet.setSeulOuGroup(projectDto.getSeulOuGroup());
+                    projet.setDescription(projectDto.getDescription());
+                    projet.setTechUsed(projectDto.getTechUsed());
+                    projet.setCurrent(projectDto.isCurrent());
+                    projet.setStart(projectDto.getStart());
+                    projet.setEnd(projectDto.getEnd());
+                    projet.setImageUrl(projectDto.getImageUrl());
 
-            return projet;
-        }
+                    return projet;
+                }).orElse(null);
     }
 }

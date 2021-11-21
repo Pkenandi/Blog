@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Objects;
+import java.util.Optional;
 import java.util.UUID;
 
 @AllArgsConstructor
@@ -20,14 +21,13 @@ public class PlainSocialMediaDto {
     public static PlainSocialMediaDto from(SocialMedia socialMedia){
         PlainSocialMediaDto socialMediaDto = new PlainSocialMediaDto();
 
-        if(Objects.isNull(socialMedia)){
-            return null;
-        }else{
-            socialMediaDto.setId(socialMedia.getId());
-            socialMediaDto.setMediaName(socialMedia.getMediaName());
-            socialMediaDto.setSocialUrl(socialMedia.getSocialUrl());
+        return Optional.ofNullable(socialMedia)
+                .map(media -> {
+                    socialMediaDto.setSocialUrl(media.getSocialUrl());
+                    socialMediaDto.setMediaName(media.getMediaName());
+                    socialMediaDto.setId(media.getId());
 
-            return socialMediaDto;
-        }
+                    return socialMediaDto;
+                }).orElse(null);
     }
 }

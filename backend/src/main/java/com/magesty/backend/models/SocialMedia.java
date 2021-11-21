@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.UUID;
 
 import static javax.persistence.FetchType.*;
@@ -29,18 +30,15 @@ public class SocialMedia implements Serializable {
     @JoinColumn(name = "media_id")
     private Admin admin;
 
-    public static SocialMedia from(SocialMediaDto socialMediaDto){
+    public static SocialMedia from(SocialMediaDto socialMediaDto) {
         SocialMedia socialMedia = new SocialMedia();
+        return Optional.ofNullable(socialMediaDto)
+                .map(media -> {
+                    socialMedia.setSocialUrl(media.getSocialUrl());
+                    socialMedia.setMediaName(media.getMediaName());
+                    socialMedia.setId(media.getId());
 
-        if(Objects.isNull(socialMediaDto)){
-            return null;
-        }else {
-            socialMedia.setSocialUrl(socialMediaDto.getSocialUrl());
-            socialMedia.setMediaName(socialMediaDto.getMediaName());
-            socialMedia.setId(socialMediaDto.getId());
-
-            return socialMedia;
-        }
+                    return socialMedia;
+                }).orElse(null);
     }
-
 }

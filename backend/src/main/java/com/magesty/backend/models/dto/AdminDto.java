@@ -7,10 +7,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @AllArgsConstructor
@@ -36,59 +33,57 @@ public class AdminDto {
     public static AdminDto from(Admin admin) {
         AdminDto adminDto = new AdminDto();
 
-        if (admin != null) {
+        return Optional.ofNullable(admin)
+                .map(admins -> {
+                    adminDto.setId(admins.getId());
+                    adminDto.setEmail(admins.getEmail());
+                    adminDto.setPassword(admins.getPassword());
+                    adminDto.setUsername(admins.getUsername());
 
-            adminDto.setId(admin.getId());
-            adminDto.setEmail(admin.getEmail());
-            adminDto.setPassword(admin.getPassword());
-            adminDto.setUsername(admin.getUsername());
+                    adminDto.setProfileDto(ProfileDto.from(admins.getProfile()));
+                    adminDto.setRoles(admins.getRoles());
 
-            adminDto.setProfileDto(ProfileDto.from(admin.getProfile()));
-            adminDto.setRoles(admin.getRoles());
+                    adminDto.setEducationDtoList(admins.getEducationList()
+                            .stream()
+                            .map(EducationDto::from)
+                            .collect(Collectors.toList()));
 
-            adminDto.setEducationDtoList(admin.getEducationList()
-                    .stream()
-                    .map(EducationDto::from)
-                    .collect(Collectors.toList()));
+                    adminDto.setAdresseDtoList(admins.getAdresseList()
+                            .stream()
+                            .map(AdresseDto::from)
+                            .collect(Collectors.toList()));
 
-            adminDto.setAdresseDtoList(admin.getAdresseList()
-                    .stream()
-                    .map(AdresseDto::from)
-                    .collect(Collectors.toList()));
+                    adminDto.setCompetenceDtoList(admins.getCompetenceList()
+                            .stream()
+                            .map(CompetenceDto::from)
+                            .collect(Collectors.toList()));
 
-            adminDto.setCompetenceDtoList(admin.getCompetenceList()
-                    .stream()
-                    .map(CompetenceDto::from)
-                    .collect(Collectors.toList()));
+                    adminDto.setCentreInteretDtoList(admins.getCentreInteretList()
+                            .stream()
+                            .map(CentreInteretDto::from)
+                            .collect(Collectors.toList()));
 
-            adminDto.setCentreInteretDtoList(admin.getCentreInteretList()
-                    .stream()
-                    .map(CentreInteretDto::from)
-                    .collect(Collectors.toList()));
+                    adminDto.setProjetDtoList(admins.getProjetList()
+                            .stream()
+                            .map(ProjetDto::from)
+                            .collect(Collectors.toList()));
 
-            adminDto.setProjetDtoList(admin.getProjetList()
-                    .stream()
-                    .map(ProjetDto::from)
-                    .collect(Collectors.toList()));
+                    adminDto.setLangueDtoList(admins.getLangueList()
+                            .stream()
+                            .map(LangueDto::from)
+                            .collect(Collectors.toList()));
 
-            adminDto.setLangueDtoList(admin.getLangueList()
-                    .stream()
-                    .map(LangueDto::from)
-                    .collect(Collectors.toList()));
+                    adminDto.setExperienceDtoList(admins.getExperienceList()
+                            .stream()
+                            .map(ExperienceDto::from)
+                            .collect(Collectors.toList()));
 
-            adminDto.setExperienceDtoList(admin.getExperienceList()
-                    .stream()
-                    .map(ExperienceDto::from)
-                    .collect(Collectors.toList()));
+                    adminDto.setSocialMediaDtoList(admins.getSocialMediaList()
+                            .stream()
+                            .map(SocialMediaDto::from)
+                            .collect(Collectors.toList()));
 
-            adminDto.setSocialMediaDtoList(admin.getSocialMediaList()
-                    .stream()
-                    .map(SocialMediaDto::from)
-                    .collect(Collectors.toList()));
-
-            return adminDto;
-        } else {
-            return null;
-        }
+                    return adminDto;
+                }).orElse(null);
     }
 }

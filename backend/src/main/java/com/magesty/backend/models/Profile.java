@@ -9,7 +9,10 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @Entity
 @AllArgsConstructor
@@ -27,16 +30,15 @@ public class Profile implements Serializable {
     @JoinColumn(name = "adminId")
     private Admin admin;
 
-    public static Profile from(ProfileDto profileDto){
+    public static Profile from(ProfileDto profileDto) {
         Profile profile = new Profile();
 
-        if(Objects.isNull(profileDto)){
-            return null;
-        }else{
-            profile.setId(profileDto.getId());
-            profile.setContent(profileDto.getContent());
+        return Optional.ofNullable(profileDto)
+                .map(profiles -> {
+                    profile.setId(profiles.getId());
+                    profile.setContent(profiles.getContent());
 
-            return profile;
-        }
+                    return profile;
+                }).orElse(null);
     }
 }

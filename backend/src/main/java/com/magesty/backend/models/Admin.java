@@ -82,26 +82,25 @@ public class Admin implements Serializable {
     public static Admin from(AdminDto adminDto) {
         Admin admin = new Admin();
 
-        if (Objects.isNull(adminDto)) {
-            return null;
-        } else {
-            admin.setId(adminDto.getId());
-            admin.setEmail(adminDto.getEmail());
-            admin.setUsername(adminDto.getUsername());
-            admin.setPassword(adminDto.getPassword());
-            admin.setProfile(Profile.from(adminDto.getProfileDto()));
-            admin.setRoles(adminDto.getRoles());
-            admin.setAdresseList(adminDto.getAdresseDtoList().stream().map(Adresse::from).collect(Collectors.toList()));
-            admin.setCentreInteretList(adminDto.getCentreInteretDtoList().stream().map(CentreInteret::from).collect(Collectors.toList()));
-            admin.setCompetenceList(adminDto.getCompetenceDtoList().stream().map(Competence::from).collect(Collectors.toList()));
-            admin.setEducationList(adminDto.getEducationDtoList().stream().map(Education::from).collect(Collectors.toList()));
-            admin.setExperienceList(adminDto.getExperienceDtoList().stream().map(Experience::from).collect(Collectors.toList()));
-            admin.setProjetList(adminDto.getProjetDtoList().stream().map(Projet::from).collect(Collectors.toList()));
-            admin.setLangueList(adminDto.getLangueDtoList().stream().map(Langue::from).collect(Collectors.toList()));
-            admin.setSocialMediaList(adminDto.getSocialMediaDtoList().stream().map(SocialMedia::from).collect(Collectors.toList()));
+        return Optional.ofNullable(adminDto)
+                .map( admins -> {
+                    admin.setId(admins.getId());
+                    admin.setEmail(admins.getEmail());
+                    admin.setUsername(admins.getUsername());
+                    admin.setPassword(admins.getPassword());
+                    admin.setProfile(Profile.from(admins.getProfileDto()));
+                    admin.setRoles(admins.getRoles());
+                    admin.setAdresseList(admins.getAdresseDtoList().stream().map(Adresse::from).collect(Collectors.toList()));
+                    admin.setCentreInteretList(admins.getCentreInteretDtoList().stream().map(CentreInteret::from).collect(Collectors.toList()));
+                    admin.setCompetenceList(admins.getCompetenceDtoList().stream().map(Competence::from).collect(Collectors.toList()));
+                    admin.setEducationList(admins.getEducationDtoList().stream().map(Education::from).collect(Collectors.toList()));
+                    admin.setExperienceList(admins.getExperienceDtoList().stream().map(Experience::from).collect(Collectors.toList()));
+                    admin.setProjetList(admins.getProjetDtoList().stream().map(Projet::from).collect(Collectors.toList()));
+                    admin.setLangueList(admins.getLangueDtoList().stream().map(Langue::from).collect(Collectors.toList()));
+                    admin.setSocialMediaList(admins.getSocialMediaDtoList().stream().map(SocialMedia::from).collect(Collectors.toList()));
 
-            return admin;
-        }
+                    return admin;
+                }).orElse( null);
     }
 
     public void addRole(Role role){

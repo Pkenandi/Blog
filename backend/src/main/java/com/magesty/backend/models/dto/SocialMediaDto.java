@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Objects;
+import java.util.Optional;
 import java.util.UUID;
 
 @AllArgsConstructor
@@ -22,15 +23,14 @@ public class SocialMediaDto {
     public static SocialMediaDto from(SocialMedia socialMedia){
         SocialMediaDto socialMediaDto = new SocialMediaDto();
 
-        if(Objects.isNull(socialMedia)){
-            return null;
-        }else{
-            socialMediaDto.setId(socialMedia.getId());
-            socialMediaDto.setMediaName(socialMedia.getMediaName());
-            socialMediaDto.setSocialUrl(socialMedia.getSocialUrl());
-            socialMediaDto.setPlainAdminDto(PlainAdminDto.from(socialMedia.getAdmin()));
+        return Optional.ofNullable(socialMedia)
+                .map(media -> {
+                    socialMediaDto.setId(media.getId());
+                    socialMediaDto.setMediaName(media.getMediaName());
+                    socialMediaDto.setSocialUrl(media.getSocialUrl());
+                    socialMediaDto.setPlainAdminDto(PlainAdminDto.from(media.getAdmin()));
 
-            return socialMediaDto;
-        }
+                    return socialMediaDto;
+                }).orElse(null);
     }
 }
