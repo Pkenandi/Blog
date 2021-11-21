@@ -18,10 +18,14 @@ body {
   margin-left: 80px;
 }
 
-.bg-image span{
+.bg-image span {
   color: cornflowerblue;
 }
 
+.bg-image .image img {
+  border-radius: 190px;
+  box-shadow: 12px 12px 2px 1px rgba(67, 67, 84, 0.2);
+}
 .bg-image .home-message {
   position: absolute;
   top: 25%;
