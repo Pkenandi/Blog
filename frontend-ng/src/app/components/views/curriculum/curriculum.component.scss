@@ -1,7 +1,11 @@
-.content {
+.cv-content {
     .cv-frame {
         width: 210mm;
         height: 297mm;
         background-color: white;
+        border: 3px solid whitesmoke;
+        .picture img {
+            border-radius: 100%;
+        }
     }
 }
