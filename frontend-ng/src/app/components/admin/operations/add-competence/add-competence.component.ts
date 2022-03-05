@@ -7,7 +7,7 @@ import {AdminService} from "../../../../services/adminService/admin.service";
 @Component({
   selector: 'app-add-competence',
   templateUrl: './add-competence.component.html',
-  styleUrls: ['./add-competence.component.css']
+  styleUrls: ['./add-competence.component.scss']
 })
 export class AddCompetenceComponent implements OnInit {
 

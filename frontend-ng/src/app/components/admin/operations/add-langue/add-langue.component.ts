@@ -8,7 +8,7 @@ import {HttpErrorResponse} from "@angular/common/http";
 @Component({
   selector: 'app-add-about',
   templateUrl: './add-langue.component.html',
-  styleUrls: ['./add-langue.component.css']
+  styleUrls: ['./add-langue.component.scss']
 })
 export class AddLangueComponent implements OnInit {
 

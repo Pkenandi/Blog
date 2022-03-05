@@ -9,7 +9,7 @@ import {faFileMedicalAlt} from "@fortawesome/free-solid-svg-icons";
 @Component({
   selector: 'app-projet',
   templateUrl: './projet.component.html',
-  styleUrls: ['./projet.component.css']
+  styleUrls: ['./projet.component.scss']
 })
 export class ProjetComponent implements OnInit {
 

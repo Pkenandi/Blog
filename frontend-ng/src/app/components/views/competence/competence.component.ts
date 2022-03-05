@@ -6,7 +6,7 @@ import {HttpErrorResponse} from "@angular/common/http";
 @Component({
   selector: 'app-competence',
   templateUrl: './competence.component.html',
-  styleUrls: ['./competence.component.css']
+  styleUrls: ['./competence.component.scss']
 })
 export class CompetenceComponent implements OnInit {
   skill: Competence = null;

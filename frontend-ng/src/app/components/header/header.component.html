@@ -1,92 +1,53 @@
 <header>
-<!--  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand img" routerLink="/home" (click)="setTitle('Acceuil')">
-        <img src="assets/Icon/logo.png" alt="">
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-              aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="float: right;">
-          <li class="nav-item">
-            <button class="btn btn-sm" [routerLink]="'/profile'" (click)="setTitle('Profile')"> Profil professionnel </button>
-          </li>
-          <li class="nav-item">
-            <button class="btn btn-sm" [routerLink]="'/realisations'" (click)="setTitle('Réalisations')"> Réalisations </button>
-          </li>
-          <li class="nav-item">
-            <button class="btn btn-sm" [routerLink]="'/skills'" (click)="setTitle('Skills')"> Skills </button>
-          </li>
-          <li class="nav-item">
-            <button class="btn btn-sm" [routerLink]="'/experiences'" (click)="setTitle('Experiences')"> Expériences </button>
-          </li>
-          <li class="nav-item">
-            <button class="btn btn-sm" [routerLink]="'/education'" (click)="setTitle('Education')"> Educations </button>
-          </li>
-          <li class="nav-item">
-            <button class="btn btn-sm" [routerLink]="'/curriculum'" (click)="setTitle('Mon Cv')"> Overview ( CV ) </button>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <div style="cursor:pointer;" *ngIf="authService.isTokenExpired()">
-      <button class="btn btn-sm material-icons" routerLink="/admin/login">
-        <mat-icon>login</mat-icon>
-      </button>
-    </div>
-  </nav>-->
-  <nav class="navbar navbar-expand-custom navbar-mainbg">
-    <a class="navbar-brand navbar-logo img" routerLink="/home" (click)="setTitle('Acceuil')">
-      <img src="assets/Icon/logo.png" alt=""></a>
-    <button class="navbar-toggler" type="button" aria-controls="navbarSupportedContent" aria-expanded="false"
-            aria-label="Toggle navigation">
+    <nav class="navbar navbar-expand-custom navbar-mainbg">
+        <a class="navbar-brand navbar-logo img" routerLink="/home" (click)="setTitle('Acceuil')">
+            <img src="assets/Icon/logo.png" alt=""></a>
+        <button class="navbar-toggler" type="button" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <i class="fas fa-bars text-white"></i>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto">
-        <div class="hori-selector">
-          <div class="left"></div>
-          <div class="right"></div>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <div class="hori-selector">
+                    <div class="left"></div>
+                    <div class="right"></div>
+                </div>
+                <li class="nav-item">
+                    <a class="nav-link active" [routerLink]="'/Home'" (click)="setTitle('Home')">
+                        <fa-icon [icon]="faHome"></fa-icon>
+                        Acceuil </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="'/profile'" (click)="setTitle('Profile')">
+                        <fa-icon [icon]="userIcon"></fa-icon>
+                        Profil professionnel </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="'/realisations'" (click)="setTitle('Réalisations')">
+                        <fa-icon [icon]="faProjectDiagram"></fa-icon>
+                        Réalisations </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="'/skills'" (click)="setTitle('Skills')">
+                        <fa-icon [icon]="faAward"></fa-icon>
+                        Skills </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="'/experiences'" (click)="setTitle('Experiences')">
+                        <fa-icon [icon]="faIndustry"></fa-icon>
+                        Expériences </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="'/education'" (click)="setTitle('Education')">
+                        <fa-icon [icon]="faBook"></fa-icon>
+                        Educations </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="'/curriculum'" (click)="setTitle('Mon Cv')">
+                        <fa-icon [icon]="userIcon"></fa-icon>
+                        Overview ( CV ) </a>
+                </li>
+            </ul>
         </div>
-        <li class="nav-item">
-          <a class="nav-link active" [routerLink]="'/Home'" (click)="setTitle('Home')">
-            <fa-icon [icon]="faHome"></fa-icon>
-            Acceuil </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="'/profile'" (click)="setTitle('Profile')">
-            <fa-icon [icon]="userIcon"></fa-icon>
-            Profil professionnel </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="'/realisations'" (click)="setTitle('Réalisations')">
-            <fa-icon [icon]="faProjectDiagram"></fa-icon>
-            Réalisations </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="'/skills'" (click)="setTitle('Skills')">
-            <fa-icon [icon]="faAward"></fa-icon>
-            Skills </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="'/experiences'" (click)="setTitle('Experiences')">
-            <fa-icon [icon]="faIndustry"></fa-icon>
-            Expériences </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="'/education'" (click)="setTitle('Education')">
-            <fa-icon [icon]="faBook"></fa-icon>
-            Educations </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="'/curriculum'" (click)="setTitle('Mon Cv')">
-            <fa-icon [icon]="userIcon"></fa-icon>
-            Overview ( CV ) </a>
-        </li>
-      </ul>
-    </div>
-  </nav>
+    </nav>
 
 </header>
