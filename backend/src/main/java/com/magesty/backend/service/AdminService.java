@@ -27,20 +27,23 @@ import static java.util.Objects.*;
 @Service
 @Transactional
 public class AdminService implements UserDetailsService {
-    private final AdminRepository adminRepository;
-    private final RoleRepository roleRepository;
-    private final PasswordEncoder passwordEncoder;
+    private AdminRepository adminRepository;
+    private RoleRepository roleRepository;
+    private PasswordEncoder passwordEncoder;
 
-    private final AdresseService adresseService;
-    private final EducationService educationService;
-    private final CentreInteretService centreInteretService;
-    private final CompetenceService competenceService;
-    private final ExperienceService experienceService;
-    private final LangueService langueService;
-    private final ProjetService projetService;
-    private final ProfileService profileService;
-    private final SocialMediaService socialMediaService;
+    private AdresseService adresseService;
+    private EducationService educationService;
+    private CentreInteretService centreInteretService;
+    private CompetenceService competenceService;
+    private ExperienceService experienceService;
+    private LangueService langueService;
+    private ProjetService projetService;
+    private ProfileService profileService;
+    private SocialMediaService socialMediaService;
 
+    public AdminService( AdminRepository adminRepository) {
+        this.adminRepository = adminRepository;
+    }
     // Login and Register
     @SneakyThrows
     @Override
@@ -78,7 +81,7 @@ public class AdminService implements UserDetailsService {
 
     public AdminDto register(AdminDto administrator) throws Exception {
         if(isNull(administrator)){
-            throw new Exception(" Null Object");
+            throw new Exception(" Admin Is Null");
         }else{
             String encodedPassword = new BCryptPasswordEncoder().encode(administrator.getPassword());
 
