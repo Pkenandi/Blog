@@ -30,6 +30,12 @@ public class AdminDto {
     private List<SocialMediaDto> socialMediaDtoList = new ArrayList<>();
     private ProfileDto profileDto;
 
+    public AdminDto(String username, String email, String password) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+    }
+
     public static AdminDto from(Admin admin) {
         AdminDto adminDto = new AdminDto();
 
