@@ -41,9 +41,11 @@ public class AdminService implements UserDetailsService {
     private ProfileService profileService;
     private SocialMediaService socialMediaService;
 
-    public AdminService( AdminRepository adminRepository) {
+    public AdminService( AdminRepository adminRepository, RoleRepository roleRepository) {
         this.adminRepository = adminRepository;
+        this.roleRepository = roleRepository;
     }
+
     // Login and Register
     @SneakyThrows
     @Override
