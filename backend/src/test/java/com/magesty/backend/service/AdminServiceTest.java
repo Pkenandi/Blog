@@ -1,27 +1,22 @@
 package com.magesty.backend.service;
 
 import com.magesty.backend.models.Admin;
+import com.magesty.backend.models.Role;
 import com.magesty.backend.models.dto.AdminDto;
 import com.magesty.backend.repository.AdminRepository;
+import com.magesty.backend.repository.RoleRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.Objects;
-
-import static java.util.Objects.*;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 
@@ -29,11 +24,17 @@ import static org.mockito.Mockito.verify;
 class AdminServiceTest {
 
     @Mock private AdminRepository adminRepository;
+    @Mock private RoleRepository roleRepository;
     private AdminService underTest;
 
     @BeforeEach
     void setUp() {
-        this.underTest = new AdminService(adminRepository);
+        this.underTest = new AdminService(adminRepository, roleRepository);
+    }
+
+    @AfterEach
+    void tearDown() {
+        underTest = null;
     }
 
     @Test
@@ -73,12 +74,85 @@ class AdminServiceTest {
     }
 
     @Test
-    @Disabled
-    void saveRole() {
+    void canSaveRole() {
+        // given
+        Role role1 = new Role();
+        role1.setId(1L);
+        role1.setName("ADMIN");
+
+        // when
+        underTest.saveRole(role1);
+
+        // then
+        ArgumentCaptor<Role> roleArgumentCaptor = ArgumentCaptor.forClass(Role.class);
+        verify(roleRepository).save(roleArgumentCaptor.capture());
+
+        Role capturedRole = roleArgumentCaptor.getValue();
+        assertThat(capturedRole).isInstanceOf(Role.class);
     }
 
     @Test
     @Disabled
     void addLangue() {
+    }
+
+    @Test
+    @Disabled
+    void login() {
+    }
+
+    @Test
+    @Disabled
+    void findByUsername() {
+    }
+
+    @Test
+    @Disabled
+    void addRoleToAdmin() {
+    }
+
+    @Test
+    @Disabled
+    void addAdresse() {
+    }
+
+    @Test
+    @Disabled
+    void addEducation() {
+    }
+
+    @Test
+    @Disabled
+    void addCentreInteret() {
+    }
+
+    @Test
+    @Disabled
+    void addCompetence() {
+    }
+
+    @Test
+    @Disabled
+    void addExperience() {
+    }
+
+    @Test
+    @Disabled
+    void testAddLangue() {
+    }
+
+    @Test
+    @Disabled
+    void addProfile() {
+    }
+
+    @Test
+    @Disabled
+    void addProjet() {
+    }
+
+    @Test
+    @Disabled
+    void addMedia() {
     }
 }
