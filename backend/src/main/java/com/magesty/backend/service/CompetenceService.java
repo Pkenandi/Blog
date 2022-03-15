@@ -3,21 +3,24 @@ package com.magesty.backend.service;
 import com.magesty.backend.models.Competence;
 import com.magesty.backend.models.dto.CompetenceDto;
 import com.magesty.backend.repository.CompetenceRepository;
-import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 import static java.util.Objects.requireNonNull;
 
-@AllArgsConstructor
 @Service
 @Transactional
 public class CompetenceService {
     private final CompetenceRepository competenceRepository;
+
+    @Autowired
+    public CompetenceService(CompetenceRepository competenceRepository) {
+        this.competenceRepository = competenceRepository;
+    }
 
     public CompetenceDto addCompetence(CompetenceDto competenceDto){
         return CompetenceDto.from(this.competenceRepository
