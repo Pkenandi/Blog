@@ -3,21 +3,24 @@ package com.magesty.backend.service;
 import com.magesty.backend.models.Profile;
 import com.magesty.backend.models.dto.ProfileDto;
 import com.magesty.backend.repository.ProfileRepository;
-import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 import static java.util.Objects.requireNonNull;
 
-@AllArgsConstructor
 @Service
 @Transactional
 public class ProfileService {
     private final ProfileRepository profileRepository;
+
+    @Autowired
+    public ProfileService(ProfileRepository profileRepository) {
+        this.profileRepository = profileRepository;
+    }
 
     public ProfileDto addProfile(ProfileDto profileDto){
         return ProfileDto.from(this.profileRepository
@@ -37,6 +40,6 @@ public class ProfileService {
 
     public ProfileDto getAdminProfile(final String username) throws Exception {
         return ProfileDto.from(this.profileRepository.findProfileByAdminUsername(username)
-                .orElseThrow(() -> new Exception(" Admin profile not found")));
+                .orElseThrow(() -> new Exception(" Admin profile not found ")));
     }
 }
