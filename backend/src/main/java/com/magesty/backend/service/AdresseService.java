@@ -1,11 +1,9 @@
 package com.magesty.backend.service;
 
 import com.magesty.backend.models.Adresse;
-import com.magesty.backend.models.SocialMedia;
 import com.magesty.backend.models.dto.AdresseDto;
-import com.magesty.backend.models.dto.SocialMediaDto;
 import com.magesty.backend.repository.AdresseRepository;
-import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -15,10 +13,14 @@ import java.util.stream.Collectors;
 import static java.util.Objects.*;
 
 @Transactional
-@AllArgsConstructor
 @Service
 public class AdresseService {
     private final AdresseRepository adresseRepository;
+
+    @Autowired
+    public AdresseService(AdresseRepository adresseRepository) {
+        this.adresseRepository = adresseRepository;
+    }
 
     public AdresseDto addAdresse(AdresseDto adresseDto) {
         return AdresseDto.from(this.adresseRepository.save(requireNonNull(Adresse.from(adresseDto))));
