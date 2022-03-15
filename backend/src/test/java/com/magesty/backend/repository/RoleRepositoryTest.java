@@ -22,7 +22,7 @@ class RoleRepositoryTest {
     }
 
     @ParameterizedTest
-    @CsvSource({"ADMIN, ADMIN", "USER, USER", "SUPER-ADMIN, ADMIN"})
+    @CsvSource({"ADMIN, ADMIN", "USER, USER", "SUPER-ADMIN, SUPER-ADMIN"})
     void existByName(String givenRole, String expected) {
         // given
         Role role1 = new Role();
