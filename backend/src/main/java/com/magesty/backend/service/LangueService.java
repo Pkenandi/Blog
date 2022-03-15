@@ -3,21 +3,24 @@ package com.magesty.backend.service;
 import com.magesty.backend.models.Langue;
 import com.magesty.backend.models.dto.LangueDto;
 import com.magesty.backend.repository.LangueRepository;
-import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 import static java.util.Objects.requireNonNull;
 
-@AllArgsConstructor
 @Service
 @Transactional
 public class LangueService {
     private final LangueRepository langueRepository;
+
+    @Autowired
+    public LangueService(LangueRepository langueRepository) {
+        this.langueRepository = langueRepository;
+    }
 
     public LangueDto addLangue(LangueDto langueDto) {
         return LangueDto.from(this.langueRepository.save(requireNonNull(Langue.from(langueDto))));
