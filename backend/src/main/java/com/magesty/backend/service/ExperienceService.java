@@ -3,21 +3,24 @@ package com.magesty.backend.service;
 import com.magesty.backend.models.Experience;
 import com.magesty.backend.models.dto.ExperienceDto;
 import com.magesty.backend.repository.ExperienceRepository;
-import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 import static java.util.Objects.requireNonNull;
 
-@AllArgsConstructor
 @Service
 @Transactional
 public class ExperienceService {
     private final ExperienceRepository experienceRepository;
+
+    @Autowired
+    public ExperienceService(ExperienceRepository experienceRepository) {
+        this.experienceRepository = experienceRepository;
+    }
 
     public ExperienceDto addExperience(ExperienceDto experienceDto){
         return ExperienceDto.from(this.experienceRepository
