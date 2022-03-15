@@ -43,23 +43,23 @@ class AdresseServiceTest {
     @Test
     void canAddAdresse() {
         // given
-        Adresse givenAdresse = new Adresse();
-        givenAdresse.set_id(1L);
-        givenAdresse.setVille("Monastir");
-        givenAdresse.setPays("Tunisia");
-        givenAdresse.setAvenue("Mpeti");
-        givenAdresse.setEmail("adresse@gmail.com");
-        givenAdresse.setPhone("00123456789");
+        Adresse expected = new Adresse();
+        expected.set_id(1L);
+        expected.setVille("Monastir");
+        expected.setPays("Tunisia");
+        expected.setAvenue("Mpeti");
+        expected.setEmail("adresse@gmail.com");
+        expected.setPhone("00123456789");
 
         // when
-        underTest.addAdresse(AdresseDto.from(givenAdresse));
+        underTest.addAdresse(AdresseDto.from(expected));
 
         // then
         ArgumentCaptor<Adresse> adresseArgumentCaptor = ArgumentCaptor.forClass(Adresse.class);
         verify(adresseRepository).save(adresseArgumentCaptor.capture());
         Adresse adresseValue = adresseArgumentCaptor.getValue();
 
-        assertThat(adresseValue).isInstanceOf(givenAdresse.getClass());
+        assertThat(adresseValue).isEqualTo(expected);
     }
 
     @Test
