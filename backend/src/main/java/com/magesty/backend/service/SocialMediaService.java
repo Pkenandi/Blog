@@ -3,21 +3,24 @@ package com.magesty.backend.service;
 import com.magesty.backend.models.SocialMedia;
 import com.magesty.backend.models.dto.SocialMediaDto;
 import com.magesty.backend.repository.SocialMediaRepository;
-import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 import static java.util.Objects.requireNonNull;
 
-@AllArgsConstructor
 @Service
 @Transactional
 public class SocialMediaService {
     private final SocialMediaRepository socialMediaRepository;
+
+    @Autowired
+    public SocialMediaService(SocialMediaRepository socialMediaRepository) {
+        this.socialMediaRepository = socialMediaRepository;
+    }
 
     public SocialMediaDto addSocialMedia( SocialMediaDto socialMediaDto){
         return SocialMediaDto.from(this.socialMediaRepository
